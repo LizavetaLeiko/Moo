@@ -1,0 +1,72 @@
+@import  '../../../styles/fontsMixins/fontsMixins.sass'
+@import  '../../../styles/colors/colors.sass'
+  
+.videoBanner
+  position: relative
+  &__video
+    align-items: center
+    display: flex
+    height: 850px
+    justify-content: center
+    overflow: hidden
+    position: relative
+    width: 100%
+    z-index: 1
+  &__video__wrap
+    background-color: rgba(0,0,0,.5)
+    height: 1150px
+    position: absolute
+    top: -200px
+    width: 100%
+  &__iframe
+    height: 1300px
+    position: absolute
+    top: 0px
+    left: 0
+    width: 100vw
+    z-index: 2
+  &__content
+    height: 850px
+    position: absolute
+    top: 0px
+    left: 0
+    background: linear-gradient(89.87deg, #000000 19.8%, rgba(255, 255, 255, 0) 134.47%)
+    z-index: 4
+    padding: 70px
+    width: 100%
+    display: flex
+    align-items: flex-end
+    justify-content: flex-start
+    color: $white
+    &__info
+      max-width: 40%
+      text-align: left
+    &__chapter
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      margin-bottom: 20px
+      gap: 25px
+    &__name
+      @include f32_700
+    &__rating
+      background-color: $manePink
+      color: $black
+      border-radius: 10px
+      padding: 3px 7px
+      @include f16_500
+    &__year
+      @include f16_500
+      margin-bottom: 10px
+    &__genres
+      @include f16_500
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 15px
+      font-weight: 300
+      margin-bottom: 25px
+      text-transform: capitalize
+    &__desc
+      @include f18_500
+      margin-bottom: 40px

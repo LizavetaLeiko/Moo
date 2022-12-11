@@ -1,0 +1,75 @@
+@import  '../../../styles/fontsMixins/fontsMixins.sass'
+@import  '../../../styles/colors/colors.sass'
+
+
+.filter
+  width: 100%
+  padding: 50px 70px 20px
+  color: $white
+  &__form
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 30px
+    margin-bottom: 40px
+  &__label
+    @include f18_500
+    text-align: left
+    width: 50%
+    margin: 0 auto 10px
+  &__genres
+    @include f18_500
+    padding: 10px
+  &__subtitle
+    @include f22_500
+    margin-bottom: 20px
+  &__genres
+    @include f16_500
+    width: 50%
+  &__chapter
+    width: 30%
+    &__fields
+      display: flex
+      justify-content: center
+      align-items: center
+      gap: 10px
+      span
+        padding: 30px 0 0 0
+        @include f18_500
+    select
+      @include f16_500
+      background-color: $gray
+      padding: 20px
+      color: #ffffff
+      outline: none
+      border: none
+      border-radius: 10px
+      opacity: 80%
+      &:focus, &:hover
+        opacity: 100%
+      option
+        padding: 10px
+        border-radius: 10px
+        opacity: 80%
+        &:focus, &:hover
+          opacity: 100%
+    &__field
+      display: flex
+      justify-content: center
+      flex-direction: column
+      width: 40%
+      label
+        @include f18_500
+        margin-bottom: 10px
+        text-align: left
+      input
+        @include f16_500
+        padding: 20px
+        background-color: $gray
+        color: #ffffff
+        outline: none
+        border: none
+        border-radius: 10px
+        opacity: 80%
+        &:focus, &:hover
+          opacity: 100%
