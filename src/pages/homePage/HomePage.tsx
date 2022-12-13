@@ -4,7 +4,7 @@ import FilmsSlider from "../../components/common/filmsSlider/FilmsSlider";
 import Filter from "../../components/filter/filter";
 import { useState } from "react";
 import FilteredFilmsList from "../../components/filteredFilmsList/FilteredFilmsList";
-import IFilmObj from "../../interfaces/filmObj";
+import { IFilmObj } from "../../interfaces/filmObj";
 
 function HomePage() {
   const [filtered, setFiltered] = useState<boolean>(false);

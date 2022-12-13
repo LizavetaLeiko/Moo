@@ -2,15 +2,8 @@ import DefaultBtn from '../common/defualtBtn/DefaultBtn';
 import styles from './styles/filter.module.sass';
 import apiKey from "../../apiKey";
 import { api } from '../../axios/axios';
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-
-interface IFilter{
-  filtered: boolean,
-  setFiltered: Dispatch<SetStateAction<boolean>>,
-  filteredFilms: Array<any>,
-  setFilteredFilms: Dispatch<SetStateAction<any[]>>,
-  limit: number,
-}
+import { useEffect, useState } from "react";
+import IFilter from './interface/IFilter';
 
 function Filter(props:IFilter) {
 
@@ -35,7 +28,7 @@ function Filter(props:IFilter) {
       }
       
       
-    } catch (err: any) {
+    } catch (err) {
       console.log("error");
     }
   };

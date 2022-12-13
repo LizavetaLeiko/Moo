@@ -1,7 +1,7 @@
 @import  '../../../styles/fontsMixins/fontsMixins.sass'
 @import  '../../../styles/colors/colors.sass'
   
-.filmPage
+.actorPage
   padding: 150px 70px 0
   position: relative
   &__flex
@@ -32,38 +32,15 @@
       left: 0px
       object-position: center
       border-radius: 10px
-  &__mane
-    display: flex
-    align-items: center
-    justify-content: start
-    margin-bottom: 10px
-    flex-wrap: wrap
-    gap: 20px
   &__title
     @include f38_700
     max-width: 50%
-  &__rating
-    background-color: $manePink
-    color: $black
-    border-radius: 10px
-    padding: 3px 7px
-    @include f16_500
-    margin-top: 5px
+    margin-bottom: 10px
   &__subtitle
     @include f32_700
     font-size: 28px
     opacity: 60%
     margin-bottom: 20px
-  &__genres
-    @include f22_500
-    display: flex
-    align-items: center
-    justify-content: flex-start
-    gap: 10px
-    margin-bottom: 50px
-    text-transform: capitalize
-    width: 100%
-    flex-wrap: wrap
   &__chars
     display: grid
     grid-template-columns: repeat(2, 1fr)
@@ -81,8 +58,3 @@
       align-items: center
       justify-content: flex-start
       gap: 10px
-  &__desc
-    @include f18_500
-    margin-bottom: 25px
-    width: 80%
-

@@ -1,28 +1,28 @@
-interface IGenre{
+export interface IGenre{
   _id: string,
   name: string
 }
 
-interface ITrailers{
+export interface ITrailers{
   _id: string,
   url: string,
   name: string,
   site:string
 }
 
-interface IFilmObj{
+export interface IFilmObj{
     poster: {
-        _id: string,
+        _id?: string,
         url: string,
-        previewUrl: string
+        previewUrl?: string
     },
     rating: {
         kp: number,
-        imdb: number,
-        filmCritics: number,
-        russianFilmCritics: number,
-        await: number,
-        _id: string
+        imdb?: number,
+        filmCritics?: number,
+        russianFilmCritics?: number,
+        await?: number,
+        _id?: string
     },
     videos: {
         trailers: Array<ITrailers>
@@ -33,7 +33,6 @@ interface IFilmObj{
     description: string,
     year: number,
     genres: Array<IGenre>,
-    ageRating: null | string
+    ageRating?: null | string
 }
 
-export default IFilmObj;
