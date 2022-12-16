@@ -12,7 +12,6 @@ interface ISimilarMovie{
   rating?: number,
   general?: boolean,
   description?: string,
-
 }
 
 export default ISimilarMovie;

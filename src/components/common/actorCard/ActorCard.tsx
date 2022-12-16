@@ -11,7 +11,7 @@ interface IActorCard{
 
 function ActorCard(props: IActorCard) {
   return (
-    <NavLink to={`/actor/${props.id}`}>
+    <NavLink to={`/actor/${props.id}`} className='link-class'>
     <div className={styles.flex}>
       <div className={styles.actor}>
         <div className={styles.actor__img}>

@@ -13,7 +13,7 @@ interface filmCard{
 
 function FilmCard(props: filmCard) {
   return (
-    <NavLink to={`/movie/${props.id}`}>
+    <NavLink to={`/movie/${props.id}`} className='link-class'>
     <div className={styles.flex}>
       <div className={styles.film}>
         <div className={styles.film__img}>

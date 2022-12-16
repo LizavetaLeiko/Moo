@@ -2,4 +2,7 @@
   color: #fff;
 }
 
-
+.active-link-class, .link-class {
+  color: #fff;
+  text-decoration: none;
+}

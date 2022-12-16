@@ -2,16 +2,18 @@
 @import  '../../../styles/colors/colors.sass'
   
 .actorPage
-  padding: 150px 70px 0
+  padding: 170px 70px 0
   position: relative
   &__flex
     display: flex
     align-items: flex-start
     justify-content: flex-start
     gap: 100px
-    margin-bottom: 80px
+    margin-bottom: 30px
   &__left
     position: relative
+  &__right
+    width: 40%
   &__poster
     width: 375px
     height: 555px
@@ -34,18 +36,16 @@
       border-radius: 10px
   &__title
     @include f38_700
-    max-width: 50%
     margin-bottom: 10px
   &__subtitle
     @include f32_700
-    font-size: 28px
+    font-size: 26px
     opacity: 60%
-    margin-bottom: 20px
+    margin-bottom: 100px
   &__chars
     display: grid
     grid-template-columns: repeat(2, 1fr)
-    margin-bottom: 50px
-    width: 50%
+    margin-bottom: 80px
     &__title
       @include f18_500
       padding: 10px 20px 10px 0
@@ -58,3 +58,25 @@
       align-items: center
       justify-content: flex-start
       gap: 10px
+  &__movies
+    &__title
+      @include f32_700
+      font-size: 26px
+      margin-bottom: 20px
+  &__movie
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    gap: 10px
+    margin-bottom: 7px
+    &__name
+      @include f22_500
+      font-weight: 400
+      &:hover
+        font-weight: 600
+    &__rating
+      background-color: $manePink
+      color: $black
+      border-radius: 10px
+      padding: 3px 5px
+      @include f16_500
