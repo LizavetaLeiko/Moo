@@ -16,6 +16,7 @@ interface ISlider {
   reqCode: number;
 }
 
+
 function FilmsSlider(props: ISlider) {
   const [films, setFilms] = useState<Array<IFilmObj>>([]);
   const [limit, setLimit] = useState<number>(10);
