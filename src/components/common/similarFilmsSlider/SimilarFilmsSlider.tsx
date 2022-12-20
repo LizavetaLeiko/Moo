@@ -15,7 +15,7 @@ interface ISimilarMovieSlider{
 }
 
 
-function SimilarMovieSlider(props: ISimilarMovieSlider) {
+function SimilarFilmsSlider(props: ISimilarMovieSlider) {
 
   const [films, setFilms] = useState<Array<ISimilarMovie>>();
 
@@ -53,4 +53,4 @@ function SimilarMovieSlider(props: ISimilarMovieSlider) {
   );
 }
 
-export default SimilarMovieSlider;
+export default SimilarFilmsSlider;

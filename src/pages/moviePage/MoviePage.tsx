@@ -5,7 +5,7 @@ import apiKey from "../../apiKey";
 import { useEffect, useState } from "react";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import { IGenre } from "../../interfaces/filmObj";
-import SimilarMovieSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
+import SimilarFilmsSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
 
 function MoviePage() {
@@ -75,7 +75,7 @@ function MoviePage() {
             <ActorsSlider persons={filmInfo?.persons} title='Актеры'/>
           }
           {filmInfo?.similarMovies && filmInfo?.similarMovies.length > 0 &&
-            <SimilarMovieSlider movies={filmInfo?.similarMovies} title='Похожие фильмы'/>
+            <SimilarFilmsSlider movies={filmInfo?.similarMovies} title='Похожие фильмы'/>
           }
     </div>
   );
