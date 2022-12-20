@@ -14,6 +14,7 @@ interface ISimilarMovieSlider{
   title: string,
 }
 
+
 function SimilarMovieSlider(props: ISimilarMovieSlider) {
 
   const [films, setFilms] = useState<Array<ISimilarMovie>>();
