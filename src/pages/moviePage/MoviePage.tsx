@@ -8,7 +8,6 @@ import { IGenre } from "../../interfaces/filmObj";
 import SimilarMovieSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
 
-
 function MoviePage() {
 
   const params = useParams<any>();
