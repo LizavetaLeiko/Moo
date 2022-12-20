@@ -14,6 +14,7 @@ interface IActorsSlider{
   title: string,
 }
 
+
 function ActorsSlider(props: IActorsSlider) {
 
   const [actors, setActors] = useState<Array<IActor>>();
