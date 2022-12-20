@@ -5,30 +5,46 @@
 .filter
   width: 100%
   padding: 50px 70px 20px
-  color: $white
   text-align: center
+  @media (max-width: 1700px)
+    padding: 30px 30px 20px
+  @media (max-width: 1600px)
+    padding: 40px 30px 
+  @media (max-width: 600px)
+    padding: 40px 10px 
   &__form
     display: flex
     justify-content: center
     align-items: center
     gap: 30px
     margin-bottom: 40px
+    flex-wrap: wrap
+    @media (max-width: 1700px)
+      gap: 20px
+    @media (max-width: 1600px)
+      flex-direction: column
+      gap: 40px
+      margin-bottom: 50px
   &__label
     @include f18_500
     text-align: left
-    width: 50%
-    margin: 0 auto 10px
-  &__genres
-    @include f18_500
-    padding: 10px
+    width: 100%
+    margin-bottom: 10px
+    @media (max-width: 1700px)
+      @include f16_500
   &__subtitle
     @include f22_500
     margin-bottom: 20px
-  &__genres
-    @include f16_500
-    width: 50%
+    @media (max-width: 1600px)
+      margin-bottom: 15px
   &__chapter
     width: 30%
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    @media (max-width: 1600px)
+      width: 100%
     &__fields
       display: flex
       justify-content: center
@@ -37,6 +53,8 @@
       span
         padding: 30px 0 0 0
         @include f18_500
+        @media (max-width: 1700px)
+          @include f16_500
     select
       @include f16_500
       background-color: $gray
@@ -46,6 +64,8 @@
       border: none
       border-radius: 10px
       opacity: 80%
+      @media (max-width: 1700px)
+        padding: 13px
       &:focus, &:hover
         opacity: 100%
       option
@@ -54,15 +74,28 @@
         opacity: 80%
         &:focus, &:hover
           opacity: 100%
+    &__genrs
+      display: flex
+      justify-content: center
+      flex-direction: column
+      width: 80%
+      @media (max-width: 1600px)
+        width: 405px
+      @media (max-width: 500px)
+        width: 305px
     &__field
       display: flex
       justify-content: center
       flex-direction: column
       width: 40%
+      @media (max-width: 500px)
+          width: 30%
       label
         @include f18_500
         margin-bottom: 10px
         text-align: left
+        @media (max-width: 1700px)
+          @include f16_500
       input
         @include f16_500
         padding: 20px
@@ -72,5 +105,7 @@
         border: none
         border-radius: 10px
         opacity: 80%
+        @media (max-width: 1700px)
+          padding: 13px
         &:focus, &:hover
           opacity: 100%

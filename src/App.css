@@ -1,8 +1,13 @@
 .App {
   color: #fff;
+  background-color: black;
 }
 
 .active-link-class, .link-class {
   color: #fff;
+  text-decoration: none;
+}
+.active-link-class-dark, .link-class-dark {
+  color: #D200A4;
   text-decoration: none;
 }

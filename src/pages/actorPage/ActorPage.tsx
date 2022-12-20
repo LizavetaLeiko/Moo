@@ -3,7 +3,6 @@ import { NavLink, useParams } from "react-router-dom";
 import { api } from "../../axios/axios";
 import apiKey from "../../apiKey";
 import { useEffect, useState } from "react";
-import SimilarMovieSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 
 
 function ActorPage() {
@@ -25,7 +24,7 @@ function ActorPage() {
 
   useEffect(()=>{
     getInfo()
-  },[params.id]);
+  },[params.id]); 
 
   
 

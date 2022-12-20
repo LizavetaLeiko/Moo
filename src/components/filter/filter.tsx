@@ -65,25 +65,27 @@ function Filter(props:IFilter) {
       <form className={styles.filter__form}>
         <div className={styles.filter__chapter}>
           <h2 className={styles.filter__subtitle}>Жанр</h2>
-          <p className={styles.filter__label}>Выберите жанр</p>
-          <select  name="genres" id="genres" onChange={handleChangeGenre} className={styles.filter__genres}>
-            <option value="">Все</option>
-            <option value="аниме">Аниме</option>
-            <option value="боевик">Боевик</option>
-            <option value="детектив">Детектив</option>
-            <option value="драма">Драма</option>
-            <option value="комедия">Комедия</option>
-            <option value="криминал">Криминал</option>
-            <option value="мелодрама">Мелодрама</option>
-            <option value="мультфильм">Мультфильм</option>
-            <option value="мюзикл">Мюзикл</option>
-            <option value="приключения">Приключения</option>
-            <option value="семейный">Семейный</option>
-            <option value="триллер">Триллер</option>
-            <option value="ужасы">Ужасы</option>
-            <option value="фентези">Фентези</option>
-            <option value="фантастика">Фантастика</option>
-          </select>
+          <div className={styles.filter__chapter__genrs}>
+            <p className={styles.filter__label}>Выберите жанр</p>
+            <select  name="genres" id="genres" onChange={handleChangeGenre} className={styles.filter__genres}>
+              <option value="">Все</option>
+              <option value="аниме">Аниме</option>
+              <option value="боевик">Боевик</option>
+              <option value="детектив">Детектив</option>
+              <option value="драма">Драма</option>
+              <option value="комедия">Комедия</option>
+              <option value="криминал">Криминал</option>
+              <option value="мелодрама">Мелодрама</option>
+              <option value="мультфильм">Мультфильм</option>
+              <option value="мюзикл">Мюзикл</option>
+              <option value="приключения">Приключения</option>
+              <option value="семейный">Семейный</option>
+              <option value="триллер">Триллер</option>
+              <option value="ужасы">Ужасы</option>
+              <option value="фентези">Фентези</option>
+              <option value="фантастика">Фантастика</option>
+            </select>
+          </div>
         </div>
         <div className={styles.filter__chapter}>
           <h2 className={styles.filter__subtitle}>Год выхода</h2>

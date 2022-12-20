@@ -71,8 +71,9 @@ function VideoBanner() {
           <p className={styles.videoBanner__content__desc}>
             {films[filmNum]?.description}
           </p>
-          <DefaultBtn title="Подробнее" />
+          <span className={styles.videoBanner__content__dots}>...</span>
         </div>
+        <DefaultBtn title="Подробнее" />
       </div>
     </div>
   );
