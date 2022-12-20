@@ -14,17 +14,17 @@ function Header() {
     <div className={styles.header}>
       <div className={styles.header__container}>
         <NavLink to='/'>
-          <div className={searchVisible ? ` ${styles.headerr__logo} ${styles.header__none}` : styles.header__logo }>
+          <div className={searchVisible ? `${styles.header__logo} ${styles.header__none}` : styles.header__logo}>
             <img src={logo} alt="Logo moo" />
           </div>
         </NavLink>
         <div className={styles.header__search}>
-          <input className={searchVisible ? styles.header__search__input : ` ${styles.header__search__input} ${styles.header__none}`} type="text" />
+          <input className={searchVisible ? styles.header__search__input : `${styles.header__search__input} ${styles.header__none}`} type="text" />
           <button className={styles.header__search__btn}  onClick={()=>setSearchVisible(!searchVisible)}>
             <img src={search} alt="search" />
           </button>
         </div>
-        <div className={searchVisible ? ` ${styles.headerr__flex} ${styles.header__none}` : styles.header__flex}>
+        <div className={searchVisible ? `${styles.header__flex} ${styles.header__none}` : styles.header__flex}>
           <div className={styles.header__theme}>
             <img src={toggleTheme} alt="change theme" />
           </div>
