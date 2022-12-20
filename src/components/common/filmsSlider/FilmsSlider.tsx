@@ -9,16 +9,17 @@ import ArrowPrev from "./arrows/ArrowPrev";
 import { api } from "../../../axios/axios";
 import apiKey from "../../../apiKey";
 import { useEffect, useState } from "react";
-import IFilmObj from '../../../interfaces/filmObj';
+import { IFilmObj } from '../../../interfaces/filmObj';
 
 interface ISlider {
   title: string;
   reqCode: number;
 }
 
+
 function FilmsSlider(props: ISlider) {
   const [films, setFilms] = useState<Array<IFilmObj>>([]);
-  const [limit, setLimit] = useState<any>(10);
+  const [limit, setLimit] = useState<number>(10);
 
   const getMovies = async () => {
     try {
@@ -26,7 +27,7 @@ function FilmsSlider(props: ISlider) {
         `/movie?field=rating.kp&search=1-10&field=year&search=2021-2022&field=typeNumber&search=${props.reqCode}&limit=${limit}&sortField=year&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&sortType=-1&sortField=votes.imdb&sortType=-1&token=${apiKey}`
       );
       setFilms(result.data.docs);
-    } catch (err: any) {
+    } catch (err) {
       console.log("error");
     }
   };
@@ -50,10 +51,11 @@ function FilmsSlider(props: ISlider) {
     <div className={styles.slider_wrap}>
       <h1 className={styles.title}>{props.title}</h1>
       <Slider {...settings}>
-        {films?.map((item: any) => {
+        {films?.map((item: IFilmObj ) => {
           return (
             <FilmCard
-              key={item.name}
+              key={item.id}
+              id={item.id}
               link={item.poster.url}
               name={item.name}
               kp={item.rating.kp}

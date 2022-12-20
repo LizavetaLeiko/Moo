@@ -1,0 +1,88 @@
+@import  '../../../styles/fontsMixins/fontsMixins.sass'
+@import  '../../../styles/colors/colors.sass'
+  
+.filmPage
+  padding: 170px 70px 0
+  position: relative
+  &__flex
+    display: flex
+    align-items: flex-start
+    justify-content: flex-start
+    gap: 100px
+    margin-bottom: 80px
+  &__left
+    position: relative
+  &__poster
+    width: 375px
+    height: 555px
+    position: relative
+    border-radius: 10px
+    margin-bottom: 40px
+    &::after
+      content: ''
+      display: block
+      padding-top: auto
+      border-radius: 10px
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+      position: absolute
+      top: 0px
+      left: 0px
+      object-position: center
+      border-radius: 10px
+  &__mane
+    display: flex
+    align-items: center
+    justify-content: start
+    margin-bottom: 10px
+    flex-wrap: wrap
+    gap: 20px
+  &__title
+    @include f38_700
+    max-width: 50%
+  &__rating
+    background-color: $manePink
+    color: $black
+    border-radius: 10px
+    padding: 3px 7px
+    @include f16_500
+    margin-top: 5px
+  &__subtitle
+    @include f32_700
+    font-size: 28px
+    opacity: 60%
+    margin-bottom: 20px
+  &__genres
+    @include f22_500
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    gap: 10px
+    margin-bottom: 50px
+    text-transform: capitalize
+    width: 100%
+    flex-wrap: wrap
+  &__chars
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    margin-bottom: 50px
+    width: 50%
+    &__title
+      @include f18_500
+      padding: 10px 20px 10px 0
+      opacity: 60%
+    &__value
+      @include f18_500
+      padding: 10px 10px 10px 0
+      font-weight: 400
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 10px
+  &__desc
+    @include f18_500
+    margin-bottom: 25px
+    width: 80%
+

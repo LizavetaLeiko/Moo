@@ -1,0 +1,53 @@
+@import  '../../../../styles/fontsMixins/fontsMixins.sass'
+@import  '../../../../styles/colors/colors.sass'
+  
+.input
+  margin-bottom: 35px
+  text-align: left
+  &__label
+    @include f18_500
+    text-transform: uppercase
+    font-weight: 600
+    color: $black
+    text-align: left
+  &__input
+    width: 100%
+    padding: 15px 20px
+    color: #000
+    @include f18_500
+    border: 1px solid $manePink
+    outline: none
+    border-radius: 10px
+    margin-top: 10px
+    transition:  all 0.3s ease-out
+    &:hover
+      transform: scale(1.03)
+  &__error
+    font-size: 14px
+    font-weight: 500
+    line-height: 18px
+    margin: 10px 0 0 5px
+    color: #D200A4
+.inputAndBtn
+  display: flex
+  justify-content: left
+  align-items: center
+.eye__btn
+  cursor: pointer
+  margin-top: 15px
+  width: 50px
+  height: 50px
+  border: none
+  background-color: transparent
+  position: relative
+  margin-left: -60px
+  @media (max-width: 400px )
+    margin-left: -50px
+  &::after
+    content: ''
+    display: block
+    padding-top: auto
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover

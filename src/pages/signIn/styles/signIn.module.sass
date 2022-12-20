@@ -1,0 +1,23 @@
+@import  '../../../styles/fontsMixins/fontsMixins.sass'
+@import  '../../../styles/colors/colors.sass'
+  
+.container
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 100vh
+  text-align: center
+.signIn
+  border: 2px solid $manePink
+  background-color: $white
+  border-radius: 15px
+  padding: 50px 30px
+  width: 500px
+  color: $black
+  &__title
+    @include f32_700
+    margin-bottom: 35px
+  &__question
+    @include f18_500
+    text-align: center
+

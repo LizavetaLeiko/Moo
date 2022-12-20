@@ -1,6 +1,6 @@
 import styles from './styles/filteredFilmsList.module.sass'
 import DefaultBtn from "../common/defualtBtn/DefaultBtn";
-import IFilmObj from '../../interfaces/filmObj'
+import { IFilmObj} from '../../interfaces/filmObj';
 import FilmCard from "../common/filmCard/FilmCard";
 
 interface IFilteredFilmsList{
@@ -21,7 +21,8 @@ function FilteredFilmsList(props: IFilteredFilmsList) {
         {props.filteredFilms?.map((item)=>{
           return(
             <FilmCard 
-            key={item.name}
+            key={item.id}
+            id={item.id}
             link={item.poster?.url}
             name={item.name}
             kp={item.rating.kp}

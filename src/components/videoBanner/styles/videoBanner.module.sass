@@ -6,17 +6,19 @@
   &__video
     align-items: center
     display: flex
-    height: 850px
+    height: 900px
     justify-content: center
     overflow: hidden
     position: relative
     width: 100%
     z-index: 1
+    @media (max-width: 900px)
+      height: 800px
   &__video__wrap
     background-color: rgba(0,0,0,.5)
     height: 1150px
     position: absolute
-    top: -200px
+    top: -100px
     width: 100%
   &__iframe
     height: 1300px
@@ -26,7 +28,7 @@
     width: 100vw
     z-index: 2
   &__content
-    height: 850px
+    height: 905px
     position: absolute
     top: 0px
     left: 0
@@ -35,12 +37,23 @@
     padding: 70px
     width: 100%
     display: flex
-    align-items: flex-end
-    justify-content: flex-start
+    align-items: flex-start
+    justify-content: flex-end
+    flex-direction: column
     color: $white
+    @media (max-width: 900px)
+      height: 805px
+      padding: 50px 20px
     &__info
       max-width: 40%
       text-align: left
+      margin-bottom: 40px
+      @media (max-width: 1550px )
+        max-width: 60%
+      @media (max-width: 1000px )
+        max-width: 80%
+      @media (max-width: 700px )
+        max-width: 100%
     &__chapter
       display: flex
       justify-content: flex-start
@@ -49,24 +62,47 @@
       gap: 25px
     &__name
       @include f32_700
+      @media (max-width: 1550px )
+        font-size: 30px
+        line-height: 32px
     &__rating
       background-color: $manePink
       color: $black
       border-radius: 10px
       padding: 3px 7px
       @include f16_500
+      @media (max-width: 1550px )
+        font-size: 14px
+        line-height: 18px
     &__year
       @include f16_500
       margin-bottom: 10px
+      @media (max-width: 1550px )
+        font-size: 14px
+        line-height: 18px
     &__genres
       @include f16_500
       display: flex
       align-items: center
       justify-content: flex-start
+      flex-wrap: wrap
       gap: 15px
       font-weight: 300
       margin-bottom: 25px
       text-transform: capitalize
+      @media (max-width: 1550px )
+        font-size: 14px
+        line-height: 18px
     &__desc
       @include f18_500
-      margin-bottom: 40px
+      @media (max-width: 1700px )
+        @include f16_500
+        max-height: 220px
+        height: fit-content
+        overflow: hidden
+    &__dots
+      display: none
+      @media (max-width: 1700px )
+        display: block
+        @include f22_500
+        margin-top: -5px
