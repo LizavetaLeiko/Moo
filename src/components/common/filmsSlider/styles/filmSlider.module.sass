@@ -5,8 +5,16 @@
 .title
   @include f32_700
   margin-bottom: 25px
-  // color: $white
   text-align: center
+  @media (max-width: 1300px)
+    font-size: 28px
+  @media (max-width: 900px)
+    font-size: 26px
+    line-height: 28px
+    margin-bottom: 20px
+  @media (max-width: 600px)
+    font-size: 24px
+    margin-bottom: 10px
 .slider_wrap
   margin-top: 50px 
   &:first-child

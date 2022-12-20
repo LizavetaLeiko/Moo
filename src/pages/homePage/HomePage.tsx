@@ -25,7 +25,7 @@ function HomePage() {
               setFilteredFilms={setFilteredFilms}
             />
           </div>
-          {/* { filtered ?
+          { filtered ?
             <div>
               <FilteredFilmsList filteredFilms={filteredFilms} setLimit={setLimit} limit={limit} />
             </div> 
@@ -37,8 +37,6 @@ function HomePage() {
               <FilmsSlider title="Новинки аниме" reqCode={4} />
             </div>
           }
-           */}
-          
         </div>
       </div>
     </div>
