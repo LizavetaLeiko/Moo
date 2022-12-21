@@ -4,22 +4,40 @@
 .actorPage
   padding: 170px 70px 0
   position: relative
+  @media (max-width: 1600px)
+      padding: 140px 50px 0
+  @media (max-width: 1000px)
+      padding: 120px 30px 0
+  @media (max-width: 600px)
+      padding: 110px 15px 0
   &__flex
     display: flex
     align-items: flex-start
     justify-content: flex-start
     gap: 100px
     margin-bottom: 30px
+    @media (max-width: 1000px)
+      gap: 0
+      flex-direction: column
+    @media (max-width: 1000px)
+      align-items: center
   &__left
     position: relative
   &__right
     width: 40%
+    @media (max-width: 1400px)
+      width: 70%
+    @media (max-width: 1000px)
+      width: 100%
   &__poster
     width: 375px
     height: 555px
     position: relative
     border-radius: 10px
     margin-bottom: 40px
+    @media (max-width: 1600px)
+      width: 300px
+      height: 444px
     &::after
       content: ''
       display: block
@@ -37,11 +55,19 @@
   &__title
     @include f38_700
     margin-bottom: 10px
+    @media (max-width: 1400px)
+      font-size: 34px
   &__subtitle
     @include f32_700
     font-size: 26px
     opacity: 60%
     margin-bottom: 100px
+    @media (max-width: 1400px)
+      font-size: 24px
+      line-height: 26px
+      margin-bottom: 60px
+    @media (max-width: 500px)
+      margin-bottom: 40px
   &__chars
     display: grid
     grid-template-columns: repeat(2, 1fr)
@@ -50,6 +76,9 @@
       @include f18_500
       padding: 10px 20px 10px 0
       opacity: 60%
+      @media (max-width: 500px)
+        @include f16_500
+        padding: 5px 15px 10px 0
     &__value
       @include f18_500
       padding: 10px 10px 10px 0
@@ -57,12 +86,19 @@
       display: flex
       align-items: center
       justify-content: flex-start
+      flex-wrap: wrap
       gap: 10px
+      @media (max-width: 500px)
+        @include f16_500
+        padding: 5px 5px 10px 0
   &__movies
     &__title
       @include f32_700
       font-size: 26px
       margin-bottom: 20px
+      @media (max-width: 1400px)
+        font-size: 24px
+        line-height: 26px
   &__movie
     display: flex
     align-items: center
@@ -72,6 +108,8 @@
     &__name
       @include f22_500
       font-weight: 400
+      @media (max-width: 500px)
+        @include f18_500
       &:hover
         font-weight: 600
     &__rating

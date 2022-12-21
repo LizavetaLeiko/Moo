@@ -37,28 +37,31 @@ function ActorPage() {
           </div>
         </div>
         <div className={styles.actorPage__right}>
-          <h1 className={styles.actorPage__title}>{actorInfo?.name}</h1>
-          <h2 className={styles.actorPage__subtitle}>{actorInfo?.enName}</h2>
-          <div className={styles.actorPage__chars}>
-            <span className={styles.actorPage__chars__title}>Деятельность</span>
-            <span className={styles.actorPage__chars__value}>
-              {actorInfo?.profession.map((item: any) => {
-                return <span key={item.value}>{item.value}</span>;
-              })}
-            </span>
-            <span className={styles.actorPage__chars__title}>Возраст</span>
-            <span className={styles.actorPage__chars__value}>{actorInfo?.age}</span>
-            <span className={styles.actorPage__chars__title}>Страна рождения</span>
-            <span className={styles.actorPage__chars__value}>
-              {actorInfo?.birthPlace.map((item: any) => {
-                return <span key={item.value}>{item.value}</span>;
-              })}
-            </span>
-            <span className={styles.actorPage__chars__title}>Рост</span>
-            <span className={styles.actorPage__chars__value}>{actorInfo?.growth}см</span>
-            <span className={styles.actorPage__chars__title}>Bсего картин</span>
-            <span className={styles.actorPage__chars__value}>{actorInfo?.movies.length}</span>
+          <div>
+            <h1 className={styles.actorPage__title}>{actorInfo?.name}</h1>
+            <h2 className={styles.actorPage__subtitle}>{actorInfo?.enName}</h2>
+            <div className={styles.actorPage__chars}>
+              <span className={styles.actorPage__chars__title}>Деятельность</span>
+              <span className={styles.actorPage__chars__value}>
+                {actorInfo?.profession.map((item: any) => {
+                  return <span key={item.value}>{item.value}</span>;
+                })}
+              </span>
+              <span className={styles.actorPage__chars__title}>Возраст</span>
+              <span className={styles.actorPage__chars__value}>{actorInfo?.age}</span>
+              <span className={styles.actorPage__chars__title}>Страна рождения</span>
+              <span className={styles.actorPage__chars__value}>
+                {actorInfo?.birthPlace.map((item: any) => {
+                  return <span key={item.value}>{item.value}</span>;
+                })}
+              </span>
+              <span className={styles.actorPage__chars__title}>Рост</span>
+              <span className={styles.actorPage__chars__value}>{actorInfo?.growth}см</span>
+              <span className={styles.actorPage__chars__title}>Bсего картин</span>
+              <span className={styles.actorPage__chars__value}>{actorInfo?.movies.length}</span>
+              </div>
           </div>
+          
           <div className={styles.actorPage__movies}>
           <h2 className={styles.actorPage__movies__title}>Фильмография</h2>
           <div className={styles.actorPage__movies__list}>
