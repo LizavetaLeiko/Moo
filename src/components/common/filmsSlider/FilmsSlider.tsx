@@ -45,6 +45,36 @@ function FilmsSlider(props: ISlider) {
     nextArrow: <ArrowNext setLimit={setLimit} limit={limit}/>,
     prevArrow: <ArrowPrev />,
     className: "slider",
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        }
+      },
+      {
+        breakpoint: 1150,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        }
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ],
   };
 
   return (
