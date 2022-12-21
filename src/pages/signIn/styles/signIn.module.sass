@@ -2,11 +2,17 @@
 @import  '../../../styles/colors/colors.sass'
   
 .container
+  padding: 150px 50px
   display: flex
   align-items: center
   justify-content: center
   height: 100vh
   text-align: center
+  @media (max-width: 1000px)
+    height: fit-content
+    padding: 130px 30px
+  @media (max-width: 600px)
+    padding: 105px 15px
 .signIn
   border: 2px solid $manePink
   background-color: $white
@@ -14,10 +20,17 @@
   padding: 50px 30px
   width: 500px
   color: $black
+  @media (max-width: 600px)
+    padding: 40px 15px
   &__title
     @include f32_700
     margin-bottom: 35px
+    @media (max-width: 600px)
+      font-size: 26px
+      line-height: 32px
   &__question
     @include f18_500
     text-align: center
+    @media (max-width: 600px)
+      @include f16_500
 
