@@ -11,3 +11,12 @@
   color: #D200A4;
   text-decoration: none;
 }
+body::-webkit-scrollbar{
+  width: 2px;
+}
+body::-webkit-scrollbar-thumb{
+  background-color: #D200A4;
+}
+body::-webkit-scrollbar-track{
+  background-color: transparent;
+} 

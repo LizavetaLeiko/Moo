@@ -4,6 +4,7 @@ import { api } from "../../axios/axios";
 import apiKey from "../../apiKey";
 import { useEffect, useRef, useState } from "react";
 import { IFilmObj, IGenre } from '../../interfaces/filmObj'
+import { NavLink } from "react-router-dom";
 
 function VideoBanner() {
   const [films, setFilms] = useState<Array<IFilmObj>>([]);
@@ -37,7 +38,6 @@ function VideoBanner() {
 
   return (
     <div className={styles.videoBanner}>
-      <div className={styles.videoBanner__background}>
         <div className={styles.videoBanner__video}>
           <div className={styles.videoBanner__video__wrap}>
             <iframe
@@ -49,7 +49,11 @@ function VideoBanner() {
             ></iframe>
           </div>
         </div>
-      </div>
+        <div  className={styles.videoBanner__image__wrap}>
+          <div className={styles.videoBanner__image}>
+            <img src={films[filmNum]?.poster.url} alt="poster"/>
+          </div>
+        </div>
       <div className={styles.videoBanner__content}>
         <div className={styles.videoBanner__content__info}>
           <div className={styles.videoBanner__content__chapter}>
@@ -73,7 +77,7 @@ function VideoBanner() {
           </p>
           <span className={styles.videoBanner__content__dots}>...</span>
         </div>
-        <DefaultBtn title="Подробнее" />
+        <NavLink className='link-class' to={`/movie/${films[filmNum]?.id}`}><DefaultBtn title="Подробнее" /></NavLink>
       </div>
     </div>
   );
