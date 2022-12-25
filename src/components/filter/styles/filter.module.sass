@@ -44,6 +44,8 @@
     align-items: center
     flex-direction: column
     @media (max-width: 1600px)
+      width: 470px
+    @media (max-width: 500px)
       width: 100%
     &__fields
       display: flex
@@ -83,14 +85,14 @@
       @media (max-width: 1600px)
         width: 470px
       @media (max-width: 500px)
-        width: 107%
+        width: 100%
     &__field
       display: flex
       justify-content: center
       flex-direction: column
-      max-width: 40%
+      width: 40%
       @media (max-width: 1600px)
-        max-width: 50%
+        width: 50%
       label
         @include f18_500
         margin-bottom: 10px
