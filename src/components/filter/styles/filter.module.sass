@@ -99,13 +99,18 @@
           @include f16_500
       input
         @include f16_500
-        padding: 20px
+        padding: 20px 100px 20px 20px
         background-color: $gray
         color: #ffffff
         outline: none
         border: none
         border-radius: 10px
         opacity: 80%
+        width: 100%
+        &::-webkit-inner-spin-button
+          display: none
+        &::-webkit-outer-spin-button
+          display: none
         @media (max-width: 1700px)
           padding: 13px
         &:focus, &:hover

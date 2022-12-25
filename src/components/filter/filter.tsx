@@ -92,12 +92,12 @@ function Filter(props:IFilter) {
           <div className={styles.filter__chapter__fields}>
             <div className={styles.filter__chapter__field}>
               <label htmlFor="from__year">От</label>
-              <input onChange={handleChangeYearFrom} type="text" id='from__year' placeholder='1990'/>
+              <input onChange={handleChangeYearFrom} type="number" step="1" min="1950" max="2023" id='from__year' placeholder='1990'/>
             </div>
             <span>-</span>
             <div className={styles.filter__chapter__field}>
               <label htmlFor="to__year">До</label>
-              <input onChange={handleChangeYearTo} type="text" id='to__year' placeholder='2022'/>
+              <input onChange={handleChangeYearTo} type="number" step="1" min="1950" max="2023" id='to__year' placeholder='2022'/>
             </div>
           </div>
         </div>
@@ -106,12 +106,12 @@ function Filter(props:IFilter) {
           <div className={styles.filter__chapter__fields}>
             <div className={styles.filter__chapter__field}>
               <label htmlFor="from__kp">От</label>
-              <input onChange={handleChangeKpFrom} type="text" id='from__kp' placeholder='1'/>
+              <input onChange={handleChangeKpFrom} type="number" step="1" min="1" max="10" id='from__kp' placeholder='1'/>
             </div>
             <span>-</span>
               <div className={styles.filter__chapter__field}>
                 <label htmlFor="to__kp">До</label>
-                <input onChange={handleChangeKpTo} type="text" id='to__kp' placeholder='10' />
+                <input onChange={handleChangeKpTo} type="number" step="1" min="1" max="10" id='to__kp' placeholder='10' />
               </div>
           </div>
         </div>

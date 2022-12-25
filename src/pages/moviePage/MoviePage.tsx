@@ -7,8 +7,11 @@ import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import { IGenre } from "../../interfaces/filmObj";
 import SimilarFilmsSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
+import { useAppSelector } from "../../redux/reduxHook";
 
 function MoviePage() {
+
+  const currentTheme = useAppSelector((state) => state.user.theme);
 
   const params = useParams<any>();
   const [filmInfo, setFilmInfo] = useState<any>();
@@ -30,7 +33,7 @@ function MoviePage() {
 
 
   return (
-    <div className={styles.filmPage}>
+    <div className={styles.filmPage}  style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <div className={styles.filmPage__flex}>
         <div className={styles.filmPage__left}>
           <div className={styles.filmPage__poster}>

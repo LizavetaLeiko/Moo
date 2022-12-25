@@ -7,6 +7,10 @@
   color: #fff;
   text-decoration: none;
 }
+.active-link-class, .link-class-black {
+  color: #000;
+  text-decoration: none;
+}
 .active-link-class-dark, .link-class-dark {
   color: #D200A4;
   text-decoration: none;

@@ -5,14 +5,17 @@ import Filter from "../../components/filter/filter";
 import { useState } from "react";
 import FilteredFilmsList from "../../components/filteredFilmsList/FilteredFilmsList";
 import { IFilmObj } from "../../interfaces/filmObj";
+import { useAppSelector } from "../../redux/reduxHook";
 
 function HomePage() {
   const [filtered, setFiltered] = useState<boolean>(false);
   const [filteredFilms, setFilteredFilms] = useState<Array<IFilmObj>>([]);
   const [limit, setLimit] = useState<number>(10);
+
+  const currentTheme = useAppSelector((state) => state.user.theme);
   
   return (
-    <div>
+    <div style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <div>
         <VideoBanner />
         <div className={styles.content}>

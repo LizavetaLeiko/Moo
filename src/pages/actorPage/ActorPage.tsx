@@ -3,9 +3,13 @@ import { NavLink, useParams } from "react-router-dom";
 import { api } from "../../axios/axios";
 import apiKey from "../../apiKey";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../../redux/reduxHook";
 
 
 function ActorPage() {
+
+  const currentTheme = useAppSelector((state) => state.user.theme);
+
 
   const params = useParams<any>();
   const [actorInfo, setActorInfo] = useState<any>();
@@ -29,7 +33,7 @@ function ActorPage() {
   
 
   return (
-    <div className={styles.actorPage}>
+    <div className={styles.actorPage} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <div className={styles.actorPage__flex}>
         <div className={styles.actorPage__left}>
           <div className={styles.actorPage__poster}>
@@ -68,7 +72,7 @@ function ActorPage() {
             {actorInfo?.movies.map((item: any)=>{
               if (item.name && item.rating){
                 return(
-                  <NavLink to={`/movie/${item.id}`} className='link-class'>
+                  <NavLink to={`/movie/${item.id}`} className={currentTheme === 'light' ? 'link-class-black' : 'link-class'}>
                     <div className={styles.actorPage__movie}>
                       <span className={styles.actorPage__movie__name}>{item.name}</span>
                       <span className={styles.actorPage__movie__rating}>{item.rating}</span>

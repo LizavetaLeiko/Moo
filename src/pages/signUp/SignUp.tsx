@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
+import { useAppSelector } from "../../redux/reduxHook";
 import styles from "./styles/signUp.module.sass";
 
 function SignUp() {
+
+  const currentTheme = useAppSelector((state) => state.user.theme);
+
 
   const [visability, setVisability] = useState<boolean>(false);
   const [visability2, setVisability2] = useState<boolean>(false);
@@ -67,7 +71,7 @@ function SignUp() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
     <div className={styles.signUp}>
       <h1 className={styles.signUp__title}>Зарегестрироваться</h1>
       <form action="SignIn" className={styles.signUp__form}>

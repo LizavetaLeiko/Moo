@@ -2,9 +2,12 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
+import { useAppSelector } from "../../redux/reduxHook";
 import styles from "./styles/signIn.module.sass";
 
 function SignIn() {
+
+  const currentTheme = useAppSelector((state) => state.user.theme);
 
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -23,8 +26,8 @@ function SignIn() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.signIn}>
+    <div className={styles.container} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
+      <div className={styles.signIn} >
         <h1 className={styles.signIn__title}>Войти</h1>
         <form action="SignIn" className={styles.signIn__form}>
           <Input 

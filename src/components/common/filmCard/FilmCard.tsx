@@ -2,6 +2,7 @@ import styles from "./styles/filmCard.module.sass";
 import defaultPoster from '../../../assets/imgs/defaultPoster.png';
 import {IGenre} from '../../../interfaces/filmObj'
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../../redux/reduxHook";
 
 interface filmCard{
   name: string,
@@ -12,8 +13,10 @@ interface filmCard{
 }
 
 function FilmCard(props: filmCard) {
+  const currentTheme = useAppSelector((state) => state.user.theme);
+
   return (
-    <NavLink to={`/movie/${props.id}`} className='link-class'>
+    <NavLink to={`/movie/${props.id}`}  className={currentTheme === 'light' ? 'link-class-black' : 'link-class'}>
     <div className={styles.flex}>
       <div className={styles.film}>
         <div className={styles.film__img}>
