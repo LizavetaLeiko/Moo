@@ -8,15 +8,20 @@ import { IGenre } from "../../interfaces/filmObj";
 import SimilarFilmsSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
 import { useAppSelector } from "../../redux/reduxHook";
+import { addLiked, checkAuth } from "../../redux/reduser/userSlice";
+import { useDispatch } from "react-redux";
+import PopUp from "../../components/pop-up/PopUp";
 
 function MoviePage() {
 
-  const currentTheme = useAppSelector((state) => state.user.theme);
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const params = useParams<any>();
   const [filmInfo, setFilmInfo] = useState<any>();
+  const [added, setEdded] = useState<boolean>(false);
 
-  const getInfo = async () => {
+  const getFilmInfo = async () => {
     try {
       const result = await api.get(
         `/movie?search=${params.id}&field=id&selectFields=%20name%20id%20poster%20rating%20budget%20fees%20type%20description%20slogan%20year%20facts%20genres%20countries%20seasonsInfo%20persons%20alternativeName%20movieLength%20similarMovies%20ageRating&token=${apiKey}`
@@ -28,19 +33,27 @@ function MoviePage() {
   };
 
   useEffect(()=>{
-    getInfo()
+    getFilmInfo()
   },[params.id]);
+
+  const dispatchNewFilm=()=>{
+    dispatch(addLiked({id: user.id, filmId: params.id}));
+    setEdded(true)
+    console.log(user.error)
+    console.log(user)
+
+  }
 
 
   return (
-    <div className={styles.filmPage}  style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
+    <div className={styles.filmPage}  style={user.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <div className={styles.filmPage__flex}>
         <div className={styles.filmPage__left}>
           <div className={styles.filmPage__poster}>
             <img src={filmInfo?.poster.url} alt={filmInfo?.name}/>
           </div>
-          <DefaultBtn title="Добавить в закладки" maxWidth='100%' marginBottom='20px'/>
-          <DefaultBtn title="Смотреть" maxWidth='100%' />
+          <DefaultBtn title="Добавить в закладки" maxWidth='100%' marginBottom='20px' onClick={dispatchNewFilm}/>
+          {/* <DefaultBtn title="Смотреть" maxWidth='100%' /> */}
         </div>
         <div className={styles.filmPage__right}>
           <div className={styles.filmPage__mane}>
@@ -79,6 +92,16 @@ function MoviePage() {
           }
           {filmInfo?.similarMovies && filmInfo?.similarMovies.length > 0 &&
             <SimilarFilmsSlider movies={filmInfo?.similarMovies} title='Похожие фильмы'/>
+          }
+          {
+            added ?
+              user.error === null 
+              ?
+              <PopUp title='Фильм сохранен' text="Фильм успешно добавлен в избранное"/>
+              :
+              <PopUp title='Произошла ошибка' text="Повторите действие позднее"/>
+            :
+            null
           }
     </div>
   );

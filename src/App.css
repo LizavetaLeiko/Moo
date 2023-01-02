@@ -1,6 +1,7 @@
 .App {
   color: #fff;
   background-color: black;
+  position: relative;
 }
 
 .active-link-class, .link-class {

@@ -6,8 +6,21 @@ import MoviePage from './pages/moviePage/MoviePage';
 import ActorPage from './pages/actorPage/ActorPage';
 import SignIn from './pages/signIn/SignIn';
 import SignUp from './pages/signUp/SignUp';
+import NotFound from './pages/notFound/NotFound';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { checkAuth } from './redux/reduser/userSlice';
 
 function App() {
+
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+        dispatch(checkAuth());
+    }
+  }, [])
+
   return (
     <div className="App">
       <Header/>
@@ -17,6 +30,7 @@ function App() {
         <Route path="/actor/:id" element={<ActorPage/>} />
         <Route path="/signin" element={<SignIn/>} />
         <Route path="/signup" element={<SignUp/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

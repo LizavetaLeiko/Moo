@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
+import PopUp from "../../components/pop-up/PopUp";
+import { checkAuth, setUserInfo } from "../../redux/reduser/userSlice";
 import { useAppSelector } from "../../redux/reduxHook";
 import styles from "./styles/signUp.module.sass";
 
 function SignUp() {
 
   const currentTheme = useAppSelector((state) => state.user.theme);
-
+  const user = useAppSelector((state) => state.user);
 
   const [visability, setVisability] = useState<boolean>(false);
   const [visability2, setVisability2] = useState<boolean>(false);
 
-  const [name, setName] = useState<string>('');
   const [login, setLogin] = useState<string>('');
 
   const [firstPassword, setFirstPassword] = useState<string>("");
@@ -24,21 +27,33 @@ function SignUp() {
 
   const [formValid, setFormValid] = useState<boolean>(false);
 
+  const dispatch = useDispatch();
+
+  const registration = async () =>{
+    try {
+      const responce = await backend.post('/api/registration', {email: login, password: secondPassword});
+      setLogin('');
+      setFirstPassword('');
+      setSecondPassword('');
+      dispatch(setUserInfo(responce.data.user));
+      localStorage.setItem('token', responce.data.accessToken);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
-    if ( firstPasswordError || passwordMatches || !name || !login) {
+    if ( firstPasswordError || passwordMatches || !login) {
       setFormValid(false);
     } else if (!firstPasswordError && !passwordMatches ) {
       setFormValid(true);
     }
-  }, [firstPasswordError, passwordMatches, name, login]);
+  }, [firstPasswordError, passwordMatches, login]);
 
   const handleChangeLogin = (event: React.ChangeEvent<HTMLInputElement>) =>{
     setLogin(event.target.value)
   }
 
-  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) =>{
-    setName(event.target.value)
-  }
 
   const regularExpressionPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
@@ -70,17 +85,15 @@ function SignUp() {
     setVisability2(!visability2)
   }
 
+  useEffect(()=>{
+    dispatch(checkAuth());
+  }, [])
+
   return (
     <div className={styles.container} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
     <div className={styles.signUp}>
       <h1 className={styles.signUp__title}>Зарегестрироваться</h1>
       <form action="SignIn" className={styles.signUp__form}>
-        <Input 
-          stateName={name}
-          placeholder='Никнейм'
-          onChange={handleChangeName}
-          label="Ваше имя (никнейм)"
-        />
         <Input 
           stateName={login}
           placeholder='введите логин'
@@ -112,7 +125,7 @@ function SignUp() {
       </form>
         <DefaultBtn
           title='Зарегестрироваться'
-          onClick=''
+          onClick={registration}
           maxWidth='100%'
           marginBottom="35px"
           padding="18px"
@@ -120,6 +133,10 @@ function SignUp() {
         />
       <span className={styles.signUp__question}>Уже есть аккаунт? <NavLink className='link-class-dark' to='/signin'>Войти</NavLink></span>
     </div>
+    { 
+      user.isAuth && !user.isActivated &&
+      <PopUp title='Пожалуйста, подтвердите почту' text='Мы отправили на вашу электронную почту письмо для подтвержения' />
+    }
   </div>
   );
 }

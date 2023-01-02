@@ -1,6 +1,7 @@
 import styles from "./styles/input.module.sass";
 import eye from "../../../assets/icons/eye1.svg";
 import IInput from "./intefaces/IInput";
+import { v4 as uuidv4 } from 'uuid';
 
 
 const Input = (props: IInput) => {
@@ -10,7 +11,7 @@ const Input = (props: IInput) => {
       <div className={styles.inputAndBtn}>
         <input 
           className={styles.input__input}
-          id={props.stateName}
+          id={uuidv4()}
           type={props.visability ? 'text' : props.type} 
           placeholder={props.placeholder} 
           value={props.stateName}

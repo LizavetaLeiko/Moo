@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
+import { setUserInfo } from "../../redux/reduser/userSlice";
 import { useAppSelector } from "../../redux/reduxHook";
 import styles from "./styles/signIn.module.sass";
 
@@ -23,6 +26,20 @@ function SignIn() {
   const toggleVisability = (event: React.FormEvent<HTMLButtonElement>) =>{
     event.preventDefault();
     setVisability(!visability)
+  }
+
+  const dispatch = useDispatch()
+
+  const postLogin = async () =>{
+    try {
+      const responce = await backend.post('/api/login', {email: login, password: password});
+      setLogin('');
+      setPassword('');
+      dispatch(setUserInfo(responce.data.user));
+      localStorage.setItem('token', responce.data.accessToken);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -49,10 +66,10 @@ function SignIn() {
         </form>
         <DefaultBtn
           title='Войти'
-          onClick=''
           maxWidth='100%'
           marginBottom="35px"
           padding="18px"
+          onClick={postLogin}
         />
         <span className={styles.signIn__question}>Нет аккаунта? <NavLink className='link-class-dark' to='/signup'>Зарегестрироваться</NavLink></span>
       </div>
