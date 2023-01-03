@@ -8,7 +8,7 @@ import { IFilmObj } from "../../interfaces/filmObj";
 import { useAppSelector } from "../../redux/reduxHook";
 
 function UserPage() {
-  const [films, setFilms] = useState<Array<IFilmObj>>();
+  const [films, setFilms] = useState<Array<any>>();
 
   const user = useAppSelector((state) => state.user);
 
@@ -16,8 +16,8 @@ function UserPage() {
     try {
       const result = await api.get(
         `/movie?${user.likedFilms.map((item) => {
-          return `&search=${item}&field=id`;
-        })}&limit=${user.likedFilms.length}&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&sortType=-1&sortField=votes.imdb&sortType=-1&token=${apiKey}`
+          return `search=${item}&field=id&`;
+        })}limit=${user.likedFilms.length}&selectFields=%20name%20id%20poster%20rating%20budget%20fees%20type%20description%20slogan%20year%20facts%20genres%20countries%20seasonsInfo%20persons%20alternativeName%20movieLength%20similarMovies%20ageRating&token=${apiKey}`
       );
       console.log("user page:", user.likedFilms, result.data);
       setFilms(result.data.docs);
