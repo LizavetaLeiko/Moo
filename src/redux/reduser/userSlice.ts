@@ -107,6 +107,7 @@ export const userSlice = createSlice({
       state.login = action.payload.user.email;
       state.id = action.payload.user.id;
       state.likedFilms = action.payload.user.likedFilm;
+      console.log('extraredusers:', action.payload.user)
     },
     [checkAuth.rejected]: (state, action) => {
       state.status = "rejected";
