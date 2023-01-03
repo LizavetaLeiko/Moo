@@ -28,7 +28,7 @@ function UserPage() {
   })
 
   return (
-    <div className={styles.userpage} style={user.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}> 
+    <div className={styles.userpage} style={user?.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}> 
       <div className={styles.userpage__container}>
         <DefaultBtn title="Выйти из аккаунта"/>
         <div className={styles.userpage__films}>

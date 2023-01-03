@@ -37,10 +37,10 @@ export const checkAuth: any = createAsyncThunk(
         "/api/refresh"
       );
       localStorage.setItem('token', responce.data.accessToken);
-      console.log(responce.data)
+      // console.log(responce.data)
       return responce.data;
     } catch (error: any) {
-      console.log(error.message)
+      // console.log(error.message)
       return rejectWithValue(error.message);
     }
   }
