@@ -20,7 +20,7 @@ function UserPage() {
       console.log('user page:', user.likedFilms, result.data.docs)
       setFilms(result.data.docs);
     } catch (err) {
-      console.log("error");
+      console.log(err);
     }
   };
 
@@ -33,7 +33,7 @@ function UserPage() {
       <div className={styles.userpage__container}>
         <DefaultBtn title="Выйти из аккаунта"/>
         <div className={styles.userpage__films}>
-          {
+          {/* {
             films?.map((item)=>{
               return(
                 <NavLink to={`user/${item.id}`} className="link-class">
@@ -52,7 +52,7 @@ function UserPage() {
                 </NavLink>
               )
             })
-          }
+          } */}
         </div>
       </div>
     </div>
