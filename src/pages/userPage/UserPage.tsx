@@ -12,6 +12,7 @@ function UserPage() {
   const [films, setFilms] = useState<Array<IFilmObj>>();
 
   const user = useAppSelector((state) => state.user);
+
   const getFilmIs = async () => {
     try {
       const result = await api.get(
@@ -21,6 +22,7 @@ function UserPage() {
       setFilms(result.data.docs);
     } catch (err) {
       console.log(err);
+      console.log('err user:', user.likedFilms)
     }
   };
 
