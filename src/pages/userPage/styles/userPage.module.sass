@@ -1,0 +1,64 @@
+@import  '../../../styles/fontsMixins/fontsMixins.sass'
+@import  '../../../styles/colors/colors.sass'
+  
+.userpage
+  &__container
+    padding: 150px 50px 100px
+    @media (max-width: 1000px)
+      padding: 130px 30px 90px
+    @media (max-width: 600px)
+      padding: 105px 15px 70px
+  &__film
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 30px
+    border-bottom: 1px solid $manePink
+    border-top: 1px solid $manePink
+    padding: 20px 0
+    &__info
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 20px
+    &__img
+      width: 250px
+      height: 370px
+      position: relative
+      border-radius: 10px
+      @media (max-width: 1300px)
+        height: 330px
+        width: 223px
+      @media (max-width: 900px)
+        height: 280px
+        width: 190px
+      &::after
+        content: ''
+        display: block
+        padding-top: auto
+        border-radius: 10px
+      img
+        width: 100%
+        height: 100%
+        object-fit: cover
+        position: absolute
+        top: 0px
+        left: 0px
+        object-position: center
+        border-radius: 10px
+      &__text
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        gap: 15px
+        h1
+          @include f32_700
+        p
+          background-color: $manePink
+          color: $black
+          border-radius: 10px
+          padding: 3px 7px
+          @include f16_500
+          @media (max-width: 900px)
+            font-size: 12px
+            padding: 2px 5px

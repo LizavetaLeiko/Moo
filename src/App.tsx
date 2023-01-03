@@ -7,6 +7,7 @@ import ActorPage from './pages/actorPage/ActorPage';
 import SignIn from './pages/signIn/SignIn';
 import SignUp from './pages/signUp/SignUp';
 import NotFound from './pages/notFound/NotFound';
+import UserPage from './pages/userPage/UserPage';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './redux/reduser/userSlice';
@@ -30,6 +31,7 @@ function App() {
         <Route path="/actor/:id" element={<ActorPage/>} />
         <Route path="/signin" element={<SignIn/>} />
         <Route path="/signup" element={<SignUp/>} />
+        <Route path="/user/:id" element={<UserPage/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

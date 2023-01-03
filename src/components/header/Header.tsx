@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./styles/header.module.sass";
 import searchIcon from "../../assets/icons/search.svg";
 import logo from "../../assets/icons/moo.svg";
-import user from "../../assets/icons/userLogo.svg";
+import userImg from "../../assets/icons/userLogo.svg";
 import toggleTheme from "../../assets/icons/toggleTheme.svg";
 import { useEffect, useState } from "react";
 import { api } from "../../axios/axios";
@@ -17,11 +17,11 @@ function Header() {
   const [search, setSearch] = useState<string>();
   const [searchedList, setSearchedList] = useState<any>([]);
 
-  const currentTheme = useAppSelector((state) => state.user.theme);
   const dispatch = useDispatch();
+  const user = useAppSelector((state) => state.user);
 
   const handleToggleTheme = () => {
-    if (currentTheme === "dark") {
+    if (user.theme === "dark") {
       dispatch(changeTheme("light"));
     } else {
       dispatch(changeTheme("dark"));
@@ -56,7 +56,7 @@ function Header() {
   return (
     <div className={styles.header} >
       <div className={styles.header__container}>
-        <NavLink to="/">
+        <NavLink to="/" className="link-class">
           <div
             className={
               searchVisible
@@ -126,14 +126,26 @@ function Header() {
           <button className={styles.header__theme} onClick={handleToggleTheme}>
             <img src={toggleTheme} alt="change theme" />
           </button>
-          <NavLink to="/signin" className="link-class">
+          { user.isActivated && user.isAuth 
+            ?
+            <NavLink to={`/user/${user.id}`} className="link-class">
             <div className={styles.header__user}>
               <div className={styles.header__user__img}>
-                <img src={user} alt="user" />
+                <img src={userImg} alt={user.login} />
+              </div>
+              <span className={styles.header__user__name}>{user.login}</span>
+            </div>
+            </NavLink>
+            :
+            <NavLink to="/signin" className="link-class">
+            <div className={styles.header__user}>
+              <div className={styles.header__user__img}>
+                <img src={userImg} alt="user" />
               </div>
               <span className={styles.header__user__name}>Войти</span>
             </div>
-          </NavLink>
+            </NavLink>
+          }
         </div>
       </div>
     </div>
