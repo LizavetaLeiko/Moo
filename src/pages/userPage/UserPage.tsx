@@ -1,4 +1,4 @@
-import styles from './styles/userPage.module.sass';
+import styles from "./styles/userPage.module.sass";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import apiKey from "../../apiKey";
@@ -8,7 +8,6 @@ import { IFilmObj } from "../../interfaces/filmObj";
 import { useAppSelector } from "../../redux/reduxHook";
 
 function UserPage() {
-
   const [films, setFilms] = useState<Array<IFilmObj>>();
 
   const user = useAppSelector((state) => state.user);
@@ -16,24 +15,33 @@ function UserPage() {
   const getFilmIs = async () => {
     try {
       const result = await api.get(
-        `/movie?${user.likedFilms.map((item) =>`&search=${item}&field=id`)}&sortField=year&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&sortType=-1&sortField=votes.imdb&sortType=-1&token=${apiKey}`
+        `/movie?${user.likedFilms.map((item) => {
+          return `&search=${item}&field=id`;
+        })}&limit=100&sortField=year&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&sortType=-1&sortField=votes.imdb&sortType=-1&token=${apiKey}`
       );
-      console.log('user page:', user.likedFilms, result.data)
+      console.log("user page:", user.likedFilms, result.data);
       setFilms(result.data.docs);
     } catch (err) {
       console.log(err);
-      console.log('err user:', user)
+      console.log("err user:", user);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getFilmIs();
-  }, [])
+  }, []);
 
   return (
-    <div className={styles.userpage} style={user?.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}> 
+    <div
+      className={styles.userpage}
+      style={
+        user?.theme === "light"
+          ? { backgroundColor: "#fff", color: "#000" }
+          : { backgroundColor: "#000", color: "#fff" }
+      }
+    >
       <div className={styles.userpage__container}>
-        <DefaultBtn title="Выйти из аккаунта"/>
+        <DefaultBtn title="Выйти из аккаунта" />
         <div className={styles.userpage__films}>
           {/* {
             films?.map((item)=>{
