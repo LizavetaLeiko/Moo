@@ -37,10 +37,8 @@ export const checkAuth: any = createAsyncThunk(
         "/api/refresh"
       );
       localStorage.setItem('token', responce.data.accessToken);
-      console.log('refresh:',responce.data)
       return responce.data;
     } catch (error: any) {
-      // console.log(error.message)
       return rejectWithValue(error.message);
     }
   }
@@ -54,7 +52,6 @@ export const addLiked: any = createAsyncThunk(
         "/api/liked",
         {id: payload.id, filmId: payload.filmId}
       );
-      // console.log(responce.data)
       return responce.data;
     } catch (error: any) {
       return error.message;
@@ -107,7 +104,6 @@ export const userSlice = createSlice({
       state.login = action.payload.user.email;
       state.id = action.payload.user.id;
       state.likedFilms = action.payload.user.likedFilms;
-      console.log('extraredusers:', action.payload.user, state.likedFilms)
     },
     [checkAuth.rejected]: (state, action) => {
       state.status = "rejected";

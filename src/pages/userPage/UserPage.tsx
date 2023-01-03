@@ -18,7 +18,7 @@ function UserPage() {
       const result = await api.get(
         `/movie?${user.likedFilms.map((item) =>`&search=${item}&field=id`)}&sortField=year&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&sortType=-1&sortField=votes.imdb&sortType=-1&token=${apiKey}`
       );
-      console.log('user page:', user.likedFilms, result.data.docs)
+      console.log('user page:', user.likedFilms, result.data)
       setFilms(result.data.docs);
     } catch (err) {
       console.log(err);
