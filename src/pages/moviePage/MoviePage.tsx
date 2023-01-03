@@ -41,7 +41,6 @@ function MoviePage() {
     setEdded(true)
     console.log(user.error)
     console.log(user)
-
   }
 
 
