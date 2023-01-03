@@ -4,7 +4,7 @@ interface IBtn{
   onClick?: any,
   maxWidth?: string,
   marginBottom?: string,
-  padding?: string
+  padding?: string,
 }
 
 export default IBtn;

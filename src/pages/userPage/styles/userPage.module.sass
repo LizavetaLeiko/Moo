@@ -16,19 +16,22 @@
     border-bottom: 1px solid $manePink
     border-top: 1px solid $manePink
     padding: 20px 0
+    width: 100%
+    @media (max-width: 900px)
+      flex-direction: column
+      align-items: flex-start
     &__info
       display: flex
-      align-items: center
+      align-items: flex-start
       justify-content: flex-start
       gap: 20px
+      @media (max-width: 600px)
+        flex-direction: column-reverse
     &__img
-      width: 250px
-      height: 370px
+      height: 330px
+      width: 223px
       position: relative
       border-radius: 10px
-      @media (max-width: 1300px)
-        height: 330px
-        width: 223px
       @media (max-width: 900px)
         height: 280px
         width: 190px
@@ -46,19 +49,32 @@
         left: 0px
         object-position: center
         border-radius: 10px
-      &__text
-        display: flex
-        align-items: center
-        justify-content: flex-start
-        gap: 15px
-        h1
-          @include f32_700
-        p
-          background-color: $manePink
-          color: $black
-          border-radius: 10px
-          padding: 3px 7px
-          @include f16_500
-          @media (max-width: 900px)
-            font-size: 12px
-            padding: 2px 5px
+    &__text
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 15px
+      width: calc( 100% - 350px )
+      @media (max-width: 900px)
+        width: calc( 100% - 210px )
+      @media (max-width: 600px)
+        width: 100%
+      h1
+        font-size: 32px
+        font-weight: 700
+        line-height: 38px
+        @media (max-width: 900px)
+          font-size: 22px
+          font-weight: 500
+          line-height: 28px
+      p
+        background-color: $manePink
+        color: $black
+        border-radius: 10px
+        padding: 3px 7px
+        font-size: 16px
+        font-weight: 500
+        line-height: 22px
+        @media (max-width: 900px)
+          font-size: 12px
+          padding: 2px 5px
