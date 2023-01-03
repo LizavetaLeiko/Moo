@@ -22,7 +22,7 @@ function UserPage() {
       setFilms(result.data.docs);
     } catch (err) {
       console.log(err);
-      console.log('err user:', user.likedFilms)
+      console.log('err user:', user)
     }
   };
 
