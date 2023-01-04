@@ -17,7 +17,7 @@ interface user {
 }
 
 const initialState: user = {
-  id: '234',
+  id: '',
   theme: cookie,
   likedFilms: [],
   login: '',

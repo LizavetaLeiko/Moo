@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
@@ -29,6 +29,13 @@ function SignIn() {
   }
 
   const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const params = useParams<any>();
+  const goHome = () =>
+    navigate("/", {
+      replace: true,
+      state: { from: params.id, date: new Date() },
+    });
 
   const postLogin = async () =>{
     try {
@@ -37,6 +44,7 @@ function SignIn() {
       setPassword('');
       dispatch(setUserInfo(responce.data.user));
       localStorage.setItem('token', responce.data.accessToken);
+      goHome();
     } catch (err) {
       console.log(err);
     }

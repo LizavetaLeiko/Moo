@@ -2,10 +2,12 @@ import styles from "./styles/homePage.module.sass";
 import VideoBanner from "../../components/videoBanner/VideoBanner";
 import FilmsSlider from "../../components/common/filmsSlider/FilmsSlider";
 import Filter from "../../components/filter/filter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FilteredFilmsList from "../../components/filteredFilmsList/FilteredFilmsList";
 import { IFilmObj } from "../../interfaces/filmObj";
 import { useAppSelector } from "../../redux/reduxHook";
+import { useDispatch } from "react-redux";
+import { checkAuth } from "../../redux/reduser/userSlice";
 
 function HomePage() {
   const [filtered, setFiltered] = useState<boolean>(false);
@@ -13,6 +15,13 @@ function HomePage() {
   const [limit, setLimit] = useState<number>(10);
 
   const currentTheme = useAppSelector((state) => state.user.theme);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+        dispatch(checkAuth());
+    }
+  }, [])
   
   return (
     <div style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>

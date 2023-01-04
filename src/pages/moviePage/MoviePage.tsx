@@ -43,7 +43,6 @@ function MoviePage() {
     console.log(user)
   }
 
-
   return (
     <div className={styles.filmPage}  style={user.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <div className={styles.filmPage__flex}>
