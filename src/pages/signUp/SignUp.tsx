@@ -85,9 +85,9 @@ function SignUp() {
     setVisability2(!visability2)
   }
 
-  useEffect(()=>{
-    dispatch(checkAuth());
-  }, [])
+  // useEffect(()=>{
+  //   dispatch(checkAuth());
+  // }, [])
 
   return (
     <div className={styles.container} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>

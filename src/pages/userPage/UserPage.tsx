@@ -45,10 +45,7 @@ function UserPage() {
 
   useEffect(() => {
     getFilmIs();
-    if (localStorage.getItem('token')) {
-      dispatch(checkAuth());
-    }
-    console.log(user.isAuth)
+    console.log(user)
   }, []);
 
   // const removeMovie = (id: string) =>{
