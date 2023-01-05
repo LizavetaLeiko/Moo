@@ -63,12 +63,14 @@ export const addUnLiked: any = createAsyncThunk(
   async function (payload: any) {
     try {
       const responce = await backend.patch(
-        "/unliked",
+        "/api/unliked",
         {id: payload.id, filmId: payload.filmId}
       );
+      console.log('slice responce:', responce.data)
       return responce.data;
     } catch (error: any) {
-      return error.message;
+      console.log('slice err:', error)
+      return error;
     }
   }
 );
@@ -104,9 +106,11 @@ export const userSlice = createSlice({
       state.login = action.payload.user.email;
       state.id = action.payload.user.id;
       state.likedFilms = action.payload.user.likedFilms;
+      state.isLoading = true;
     },
     [checkAuth.rejected]: (state, action) => {
       state.status = "rejected";
+      state.isLoading = false;
       state.isAuth = false;
       state.error = action.payload;
     },
@@ -116,10 +120,12 @@ export const userSlice = createSlice({
     },
     [addLiked.fulfilled]: (state, action) => {
       state.status = "resolved";
+      state.isLoading = false;
       state.likedFilms = action.payload.likedFilms;
     },
     [addLiked.rejected]: (state, action) => {
       state.status = "rejected";
+      state.isLoading = false;
       state.error = action.payload;
     },
     [addUnLiked.pending]: (state, action) => {
@@ -128,10 +134,12 @@ export const userSlice = createSlice({
     },
     [addUnLiked.fulfilled]: (state, action) => {
       state.status = "resolved";
+      state.isLoading = false;
       state.likedFilms = action.payload.likedFilms;
     },
     [addUnLiked.rejected]: (state, action) => {
       state.status = "rejected";
+      state.isLoading = false;
       state.error = action.payload;
     },
   },

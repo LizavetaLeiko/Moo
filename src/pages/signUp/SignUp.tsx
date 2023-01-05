@@ -5,7 +5,7 @@ import { backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
 import PopUp from "../../components/pop-up/PopUp";
-import { checkAuth, setUserInfo } from "../../redux/reduser/userSlice";
+import {  setUserInfo } from "../../redux/reduser/userSlice";
 import { useAppSelector } from "../../redux/reduxHook";
 import styles from "./styles/signUp.module.sass";
 
@@ -85,9 +85,6 @@ function SignUp() {
     setVisability2(!visability2)
   }
 
-  // useEffect(()=>{
-  //   dispatch(checkAuth());
-  // }, [])
 
   return (
     <div className={styles.container} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>

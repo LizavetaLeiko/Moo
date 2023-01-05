@@ -11,6 +11,8 @@ import UserPage from "./pages/userPage/UserPage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkAuth } from "./redux/reduser/userSlice";
+import { useAppSelector } from "./redux/reduxHook";
+import { Triangle } from "react-loader-spinner";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,9 +21,24 @@ function App() {
     dispatch(checkAuth());
   }, []);
 
+  const user = useAppSelector((state) =>state.user);
+
   return (
     <div className="App">
       <Header />
+      {user.isLoading ?
+      <div className="loader__wrap">
+        <Triangle
+        height="80"
+        width="80"
+        color="#D200A4"
+        ariaLabel="triangle-loading"
+        wrapperStyle={{}}
+        wrapperClass="loader"
+        visible={true}
+        />
+      </div>
+      :
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movie/:id" element={<MoviePage />} />
@@ -31,6 +48,7 @@ function App() {
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      }
     </div>
   );
 }

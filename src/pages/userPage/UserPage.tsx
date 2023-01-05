@@ -5,7 +5,7 @@ import apiKey from "../../apiKey";
 import { api, backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import { useAppSelector } from "../../redux/reduxHook";
-import { addUnLiked, checkAuth, setUserInfo } from "../../redux/reduser/userSlice";
+import { addUnLiked, setUserInfo } from "../../redux/reduser/userSlice";
 import { useDispatch } from "react-redux";
 
 function UserPage() {
@@ -19,7 +19,7 @@ function UserPage() {
 
   const [films, setFilms] = useState<Array<any>>([]);
 
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) =>state.user);
   const dispatch = useDispatch();
 
   const getFilmIs = async () => {
@@ -32,26 +32,25 @@ function UserPage() {
           })
           .join(",")
           .replaceAll(",", "")}limit=${
-          user.likedFilms.length
+            user.likedFilms.length
         }&selectFields=%20name%20id%20poster%20rating%20budget%20fees%20type%20description%20slogan%20year%20facts%20genres%20countries%20seasonsInfo%20persons%20alternativeName%20movieLength%20similarMovies%20ageRating&token=${apiKey}`
       );
       setFilms(result.data.docs);
     } catch (err) {
       console.log(err);
-      console.log("err user:", user);
     }
   }
   };
 
   useEffect(() => {
     getFilmIs();
-    console.log(user)
+    // console.log(user);
   }, []);
 
-  // const removeMovie = (id: string) =>{
-  //   dispatch(addUnLiked({id: user.id, filmId: id}))
-  //   getFilmIs()
-  // }
+  const removeMovie = (id: string) =>{
+    dispatch(addUnLiked({id: user.id, filmId: id}))
+    console.log('userpage:', {id: user.id, filmId: id})
+  }
 
   const defaultUser ={
     id: '',
@@ -104,7 +103,7 @@ function UserPage() {
                     </div>
                   </div>
                   </NavLink>
-                  <DefaultBtn title="Удалить" maxWidth='190px' />
+                  <DefaultBtn title="Удалить" maxWidth='190px' onClick={()=>removeMovie(item.id)} />
                 </div>
               )
             })

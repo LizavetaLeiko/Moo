@@ -8,7 +8,7 @@ import { IGenre } from "../../interfaces/filmObj";
 import SimilarFilmsSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
 import { useAppSelector } from "../../redux/reduxHook";
-import { addLiked, checkAuth } from "../../redux/reduser/userSlice";
+import { addLiked } from "../../redux/reduser/userSlice";
 import { useDispatch } from "react-redux";
 import PopUp from "../../components/pop-up/PopUp";
 
