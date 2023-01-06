@@ -9,15 +9,15 @@ import { api } from "../../axios/axios";
 import apiKey from "../../apiKey";
 import useOutsideClick from "../../castomHooks/clickOutside/useOutsideClick";
 import { changeTheme } from "../../redux/reduser/userSlice";
-import { useAppSelector } from "../../redux/reduxHook";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
+import { IShortFilmObj } from "../../interfaces/filmObj";
 
 function Header() {
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const [search, setSearch] = useState<string>();
-  const [searchedList, setSearchedList] = useState<any>([]);
+  const [searchedList, setSearchedList] = useState<Array<IShortFilmObj>>([]);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
   const handleToggleTheme = () => {
@@ -82,7 +82,7 @@ function Header() {
             />
             {searchedList && (
               <ul ref={ref}>
-                {searchedList?.map((item: any) => {
+                {searchedList?.map((item: IShortFilmObj) => {
                   return (
                     <NavLink className="link-class" to={`/movie/${item.id}`}>
                       <li
@@ -98,8 +98,8 @@ function Header() {
                           >{`(${item.year})`}</span>
                         </div>
                         <span className={styles.header__search__li__rating}>
-                          {item.rating.kp !== 0
-                            ? `${item.rating.kp.toFixed(1)}`
+                          {item.rating?.kp !== 0
+                            ? `${item?.rating?.kp.toFixed(1)}`
                             : "?"}
                         </span>
                       </li>

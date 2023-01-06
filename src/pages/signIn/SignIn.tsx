@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, Params, useNavigate, useParams } from "react-router-dom";
 import { backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
@@ -30,7 +30,7 @@ function SignIn() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate();
-  const params = useParams<any>();
+  const params = useParams<Params<string>>();
   const goHome = () =>
     navigate("/", {
       replace: true,

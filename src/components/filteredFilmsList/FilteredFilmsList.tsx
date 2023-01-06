@@ -12,7 +12,7 @@ interface IFilteredFilmsList{
 function FilteredFilmsList(props: IFilteredFilmsList) {
 
   const onClick = ()=>{
-    props.setLimit( props.limit + 10)
+    props.setLimit(props.limit + 10)
   }
 
   return (

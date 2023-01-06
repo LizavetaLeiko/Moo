@@ -1,25 +1,23 @@
 import styles from "./styles/moviePage.module.sass";
-import { useParams } from "react-router-dom";
+import { Params, useParams } from "react-router-dom";
 import { api } from "../../axios/axios";
 import apiKey from "../../apiKey";
-import { useEffect, useState } from "react";
+import { useEffect,  useState } from "react";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
-import { IGenre } from "../../interfaces/filmObj";
+import { ICountries, IGenre} from "../../interfaces/filmObj";
 import SimilarFilmsSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
-import { useAppSelector } from "../../redux/reduxHook";
+import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
 import { addLiked } from "../../redux/reduser/userSlice";
-import { useDispatch } from "react-redux";
-import PopUp from "../../components/pop-up/PopUp";
 
 function MoviePage() {
 
   const user = useAppSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const params = useParams<any>();
+  const params = useParams<Params<string>>();
   const [filmInfo, setFilmInfo] = useState<any>();
-  const [added, setEdded] = useState<boolean>(false);
+
 
   const getFilmInfo = async () => {
     try {
@@ -38,9 +36,6 @@ function MoviePage() {
 
   const dispatchNewFilm=()=>{
     dispatch(addLiked({id: user.id, filmId: params.id}));
-    setEdded(true)
-    console.log(user.error)
-    console.log(user)
   }
 
   return (
@@ -50,8 +45,14 @@ function MoviePage() {
           <div className={styles.filmPage__poster}>
             <img src={filmInfo?.poster.url} alt={filmInfo?.name}/>
           </div>
-          <DefaultBtn title="Добавить в закладки" maxWidth='100%' marginBottom='20px' onClick={dispatchNewFilm}/>
-          {/* <DefaultBtn title="Смотреть" maxWidth='100%' /> */}
+          {
+            user.likedFilms?.length > 0 &&
+            user.likedFilms?.includes(filmInfo?.id?.toString(), 0)
+            ?
+            <DefaultBtn title="Фильм в закладках" maxWidth='100%' marginBottom='20px' disabled={true}/>
+            :
+            <DefaultBtn title="Добавить в закладки" maxWidth='100%' marginBottom='20px' onClick={dispatchNewFilm}/>
+          }
         </div>
         <div className={styles.filmPage__right}>
           <div className={styles.filmPage__mane}>
@@ -60,7 +61,7 @@ function MoviePage() {
           </div>
           <h2 className={styles.filmPage__subtitle}>{filmInfo?.alternativeName}</h2>
           <div className={styles.filmPage__genres}>
-            {filmInfo?.genres.map((item: IGenre) => {
+            {filmInfo?.genres?.map((item: IGenre) => {
                 return <span className={styles.filmPage__genre} key={item._id}>{item.name} ~</span>;
             })}
           </div>
@@ -69,14 +70,14 @@ function MoviePage() {
             <span className={styles.filmPage__chars__value}>{filmInfo?.year}</span>
             <span className={styles.filmPage__chars__title}>Страна производства</span>
             <span className={styles.filmPage__chars__value}>
-              {filmInfo?.countries.map((item: any) => {
+              {filmInfo?.countries?.map((item: ICountries) => {
                 return <span key={item._id}>{item.name}</span>;
               })}
             </span>
             <span className={styles.filmPage__chars__title}>Бюджет</span>
-            <span className={styles.filmPage__chars__value}>{filmInfo?.budget.value}{filmInfo?.budget.currency}</span>
+            <span className={styles.filmPage__chars__value}>{filmInfo?.budget?.value}{filmInfo?.budget?.currency}</span>
             <span className={styles.filmPage__chars__title}>Мировые сборы</span>
-            <span className={styles.filmPage__chars__value}>{filmInfo?.fees.world.value}{filmInfo?.fees.world.currency}</span>
+            <span className={styles.filmPage__chars__value}>{filmInfo?.fees?.world?.value}{filmInfo?.fees?.world?.currency}</span>
             <span className={styles.filmPage__chars__title}>Длительность</span>
             <span className={styles.filmPage__chars__value}>{filmInfo?.movieLength} мин</span>
             <span className={styles.filmPage__chars__title}>Возрастное ограничение</span>
@@ -90,16 +91,6 @@ function MoviePage() {
           }
           {filmInfo?.similarMovies && filmInfo?.similarMovies.length > 0 &&
             <SimilarFilmsSlider movies={filmInfo?.similarMovies} title='Похожие фильмы'/>
-          }
-          {
-            added ?
-              user.error === null 
-              ?
-              <PopUp title='Фильм сохранен' text="Фильм успешно добавлен в избранное"/>
-              :
-              <PopUp title='Произошла ошибка' text="Повторите действие позднее"/>
-            :
-            null
           }
     </div>
   );

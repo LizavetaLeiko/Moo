@@ -33,8 +33,6 @@ function App() {
         width="80"
         color="#D200A4"
         ariaLabel="triangle-loading"
-        wrapperStyle={{}}
-        wrapperClass="loader"
         visible={true}
         />
       </div>

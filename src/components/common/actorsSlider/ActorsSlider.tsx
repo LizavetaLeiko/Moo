@@ -7,7 +7,7 @@ import ActorCard from "../actorCard/ActorCard";
 import ArrowNext from "./arrows/ArrowNext";
 import ArrowPrev from "./arrows/ArrowPrev";
 import { useEffect, useState } from "react";
-import IActor from "../../../interfaces/IActor";
+import {IActor} from "../../../interfaces/IActor";
 
 interface IActorsSlider{
   persons: Array<IActor>

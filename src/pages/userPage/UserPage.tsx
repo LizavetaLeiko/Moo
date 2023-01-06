@@ -1,23 +1,24 @@
 import styles from "./styles/userPage.module.sass";
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, Params, useNavigate, useParams } from "react-router-dom";
 import apiKey from "../../apiKey";
 import { api, backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import { useAppSelector } from "../../redux/reduxHook";
 import { addUnLiked, setUserInfo } from "../../redux/reduser/userSlice";
 import { useDispatch } from "react-redux";
+import { IShortFilmObj } from "../../interfaces/filmObj";
 
 function UserPage() {
   const navigate = useNavigate();
-  const params = useParams<any>();
+  const params = useParams<Params<string>>();
   const goHome = () =>
     navigate("/", {
       replace: true,
       state: { from: params.id, date: new Date() },
     });
 
-  const [films, setFilms] = useState<Array<any>>([]);
+  const [films, setFilms] = useState<Array<IShortFilmObj>>([]);
 
   const user = useAppSelector((state) =>state.user);
   const dispatch = useDispatch();
@@ -27,13 +28,13 @@ function UserPage() {
     try {
       const result = await api.get(
         `/movie?${user.likedFilms
-          .map((item: any) => {
+          .map((item: string) => {
             return `search=${item}&field=id&`;
           })
           .join(",")
           .replaceAll(",", "")}limit=${
             user.likedFilms.length
-        }&selectFields=%20name%20id%20poster%20rating%20budget%20fees%20type%20description%20slogan%20year%20facts%20genres%20countries%20seasonsInfo%20persons%20alternativeName%20movieLength%20similarMovies%20ageRating&token=${apiKey}`
+        }&selectFields=%20name%20id%20poster%20rating%20year&token=${apiKey}`
       );
       setFilms(result.data.docs);
     } catch (err) {
@@ -44,7 +45,6 @@ function UserPage() {
 
   useEffect(() => {
     getFilmIs();
-    // console.log(user);
   }, []);
 
   const removeMovie = (id: string) =>{
@@ -89,7 +89,7 @@ function UserPage() {
         ?
         <div className={styles.userpage__films}>
           {
-            films?.map((item)=>{
+            films?.map((item: IShortFilmObj)=>{
               return(
                 <div className={styles.userpage__film}>
                   <NavLink to={`/movie/${item?.id}`} className={user?.theme === 'light' ? 'link-class-black' : 'link-class'}>
@@ -103,7 +103,7 @@ function UserPage() {
                     </div>
                   </div>
                   </NavLink>
-                  <DefaultBtn title="Удалить" maxWidth='190px' onClick={()=>removeMovie(item.id)} />
+                  <DefaultBtn title="Удалить" maxWidth='190px' onClick={()=>removeMovie(item?.id.toString())} />
                 </div>
               )
             })

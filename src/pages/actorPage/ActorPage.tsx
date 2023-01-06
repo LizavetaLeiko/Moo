@@ -1,9 +1,10 @@
 import styles from "./styles/actorPage.module.sass";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, Params, useParams } from "react-router-dom";
 import { api } from "../../axios/axios";
 import apiKey from "../../apiKey";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/reduxHook";
+import { IActorFullInfo } from "../../interfaces/IActor";
 
 
 function ActorPage() {
@@ -11,8 +12,8 @@ function ActorPage() {
   const currentTheme = useAppSelector((state) => state.user.theme);
 
 
-  const params = useParams<any>();
-  const [actorInfo, setActorInfo] = useState<any>();
+  const params = useParams<Params<string>>();
+  const [actorInfo, setActorInfo] = useState<IActorFullInfo>();
 
   const getInfo = async () => {
     try {
@@ -47,7 +48,7 @@ function ActorPage() {
             <div className={styles.actorPage__chars}>
               <span className={styles.actorPage__chars__title}>Деятельность</span>
               <span className={styles.actorPage__chars__value}>
-                {actorInfo?.profession.map((item: any) => {
+                {actorInfo?.profession?.map((item: any) => {
                   return <span key={item.value}>{item.value}</span>;
                 })}
               </span>
@@ -55,21 +56,21 @@ function ActorPage() {
               <span className={styles.actorPage__chars__value}>{actorInfo?.age}</span>
               <span className={styles.actorPage__chars__title}>Страна рождения</span>
               <span className={styles.actorPage__chars__value}>
-                {actorInfo?.birthPlace.map((item: any) => {
+                {actorInfo?.birthPlace?.map((item: any) => {
                   return <span key={item.value}>{item.value}</span>;
                 })}
               </span>
               <span className={styles.actorPage__chars__title}>Рост</span>
               <span className={styles.actorPage__chars__value}>{actorInfo?.growth}см</span>
               <span className={styles.actorPage__chars__title}>Bсего картин</span>
-              <span className={styles.actorPage__chars__value}>{actorInfo?.movies.length}</span>
+              <span className={styles.actorPage__chars__value}>{actorInfo?.movies?.length}</span>
               </div>
           </div>
           
           <div className={styles.actorPage__movies}>
           <h2 className={styles.actorPage__movies__title}>Фильмография</h2>
           <div className={styles.actorPage__movies__list}>
-            {actorInfo?.movies.map((item: any)=>{
+            {actorInfo?.movies?.map((item: any)=>{
               if (item.name && item.rating){
                 return(
                   <NavLink to={`/movie/${item.id}`} className={currentTheme === 'light' ? 'link-class-black' : 'link-class'}>

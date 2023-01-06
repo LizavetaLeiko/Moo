@@ -106,7 +106,7 @@ export const userSlice = createSlice({
       state.login = action.payload.user.email;
       state.id = action.payload.user.id;
       state.likedFilms = action.payload.user.likedFilms;
-      state.isLoading = true;
+      state.isLoading = false;
     },
     [checkAuth.rejected]: (state, action) => {
       state.status = "rejected";
