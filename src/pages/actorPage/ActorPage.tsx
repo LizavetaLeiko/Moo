@@ -83,7 +83,7 @@ function ActorPage() {
                 )
               } else if(item.name){
                 return(
-                  <NavLink key={item.id} to={`/movie/${item.id}`} className='link-class'>
+                  <NavLink key={item.id} to={`/movie/${item.id}`} className={user.theme === 'light' ? 'link-class-black' : 'link-class'}>
                     <div className={styles.actorPage__movie}>
                       <span className={styles.actorPage__movie__name}>{item.name}</span>
                     </div>
