@@ -9,6 +9,8 @@ import SimilarFilmsSlider from "../../components/common/similarFilmsSlider/Simil
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
 import { addLiked, setError } from "../../redux/reduser/userSlice";
+import defaultPoster from '../../assets/imgs/defaultPoster.png';
+
 
 function MoviePage() {
 
@@ -43,7 +45,7 @@ function MoviePage() {
       <div className={styles.filmPage__flex}>
         <div className={styles.filmPage__left}>
           <div className={styles.filmPage__poster}>
-            <img src={filmInfo?.poster.url} alt={filmInfo?.name}/>
+            <img src={filmInfo?.poster?.url ? filmInfo?.poster?.url : defaultPoster} alt={filmInfo?.name && filmInfo?.name}/>
           </div>
           {
             user.likedFilms?.length > 0 &&
@@ -56,37 +58,45 @@ function MoviePage() {
         </div>
         <div className={styles.filmPage__right}>
           <div className={styles.filmPage__mane}>
-            <h1 className={styles.filmPage__title}>{filmInfo?.name}</h1>
+            <h1 className={styles.filmPage__title}>{filmInfo?.name && filmInfo?.name}</h1>
+            {filmInfo?.rating.kp 
+            &&
             <span className={styles.filmPage__rating}>{filmInfo?.rating.kp.toFixed(1)}</span>
+            }
           </div>
-          <h2 className={styles.filmPage__subtitle}>{filmInfo?.alternativeName}</h2>
+          {
+            filmInfo?.alternativeName && <h2 className={styles.filmPage__subtitle}>{filmInfo?.alternativeName}</h2>
+          }
           <div className={styles.filmPage__genres}>
-            {filmInfo?.genres?.map((item: IGenre) => {
+            {filmInfo?.genres &&
+            filmInfo?.genres?.map((item: IGenre) => {
                 return <span className={styles.filmPage__genre} key={item._id}>{item.name} ~</span>;
             })}
           </div>
           <div className={styles.filmPage__chars}>
             <span className={styles.filmPage__chars__title}>Год</span>
-            <span className={styles.filmPage__chars__value}>{filmInfo?.year}</span>
+            <span className={styles.filmPage__chars__value}>{filmInfo?.year && filmInfo?.year}</span>
             <span className={styles.filmPage__chars__title}>Страна производства</span>
             <span className={styles.filmPage__chars__value}>
-              {filmInfo?.countries?.map((item: ICountries) => {
+              {filmInfo?.countries &&
+              filmInfo?.countries?.map((item: ICountries) => {
                 return <span key={item._id}>{item.name}</span>;
-              })}
+              })
+            }
             </span>
             <span className={styles.filmPage__chars__title}>Бюджет</span>
-            <span className={styles.filmPage__chars__value}>{filmInfo?.budget?.value}{filmInfo?.budget?.currency}</span>
+            <span className={styles.filmPage__chars__value}>{filmInfo?.budget?.value && filmInfo?.budget?.value}{filmInfo?.budget?.currency && filmInfo?.budget?.currency}</span>
             <span className={styles.filmPage__chars__title}>Мировые сборы</span>
-            <span className={styles.filmPage__chars__value}>{filmInfo?.fees?.world?.value}{filmInfo?.fees?.world?.currency}</span>
+            <span className={styles.filmPage__chars__value}>{filmInfo?.fees?.world?.value && filmInfo?.fees?.world?.value}{filmInfo?.fees?.world?.currency &&  filmInfo?.fees?.world?.currency}</span>
             <span className={styles.filmPage__chars__title}>Длительность</span>
-            <span className={styles.filmPage__chars__value}>{filmInfo?.movieLength} мин</span>
+            <span className={styles.filmPage__chars__value}>{filmInfo?.movieLength && filmInfo?.movieLength} мин</span>
             <span className={styles.filmPage__chars__title}>Возрастное ограничение</span>
             <span className={styles.filmPage__chars__value}>{filmInfo?.ageRating ? filmInfo?.ageRating : 0} +</span>
           </div>
-          <p className={styles.filmPage__desc}>{filmInfo?.description}</p>
+          <p className={styles.filmPage__desc}>{filmInfo?.description && filmInfo?.description}</p>
         </div>
       </div>
-          {filmInfo?.persons &&
+          {filmInfo?.persons && filmInfo?.persons.length > 0 &&
             <ActorsSlider persons={filmInfo?.persons} title='Актеры'/>
           }
           {filmInfo?.similarMovies && filmInfo?.similarMovies.length > 0 &&

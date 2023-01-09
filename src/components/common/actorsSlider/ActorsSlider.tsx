@@ -17,7 +17,7 @@ interface IActorsSlider{
 
 function ActorsSlider(props: IActorsSlider) {
 
-  const [actors, setActors] = useState<Array<IActor>>();
+  const [actors, setActors] = useState<Array<IActor>>([]);
 
   useEffect(()=>{
     setActors(props.persons.filter(item => item.profession === "актеры" && item.name));
@@ -86,6 +86,8 @@ function ActorsSlider(props: IActorsSlider) {
   };
 
   return (
+    <>
+    {actors.length > 0 && 
     <div className={styles.slider_wrap}>
     <h1 className={styles.title}>{props.title}</h1>
       <Slider {...settings}>
@@ -101,6 +103,8 @@ function ActorsSlider(props: IActorsSlider) {
         })}
       </Slider>
     </div>
+    }
+  </>
   );
 }
 

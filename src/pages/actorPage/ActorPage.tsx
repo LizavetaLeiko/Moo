@@ -94,7 +94,6 @@ function ActorPage() {
               }
             })}
           </div>
-          <span>Ещё фильмы...</span>
         </div>
         </div>
       </div>

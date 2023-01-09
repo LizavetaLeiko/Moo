@@ -5,8 +5,9 @@ import apiKey from "../../apiKey";
 import { useEffect, useRef, useState } from "react";
 import { IFilmObj, IGenre } from '../../interfaces/filmObj'
 import { NavLink } from "react-router-dom";
-import { setError } from "../../redux/reduser/userSlice";
+import { setError} from "../../redux/reduser/userSlice";
 import { useAppDispatch } from "../../redux/reduxHook";
+import defaultPoster from '../../assets/imgs/defaultPoster.png'
 
 function VideoBanner() {
   const [films, setFilms] = useState<Array<IFilmObj>>([]);
@@ -49,13 +50,12 @@ function VideoBanner() {
               src={`${films[filmNum]?.videos?.trailers[0].url}?mute=1&showinfo=0&iv_load_policy=3&autoplay=1&controls=0&fs=0&showsearch=0&rel=0&modestbranding=1&loop=1`}
               title="video"
               allow="autoplay"
-              frameBorder="0"
             ></iframe>
           </div>
         </div>
         <div  className={styles.videoBanner__image__wrap}>
           <div className={styles.videoBanner__image}>
-            <img src={films[filmNum]?.poster.url} alt="poster"/>
+            <img src={films[filmNum]?.poster.url ? films[filmNum]?.poster.url : defaultPoster} alt="poster"/>
           </div>
         </div>
       <div className={styles.videoBanner__content}>

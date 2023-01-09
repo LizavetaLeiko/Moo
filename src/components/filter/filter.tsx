@@ -20,12 +20,12 @@ function Filter(props:IFilter) {
     try {
       if(genre) {
         const result = await api.get(
-        `/movie?field=genres.name&search=${genre}&field=year&search=${yearFrom}-${yearTo}&field=rating.kp&search=${kpFrom}-${kpTo}&sortType=-1&limit=${props.limit}&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&token=${apiKey}`
+        `/movie?field=genres.name&search=${genre}&field=year&search=${yearFrom ? yearFrom : '1990'}-${yearTo ? yearTo : '2022'}&field=rating.kp&search=${kpFrom ? kpFrom : 1}-${kpTo ? kpTo : 10}&sortType=-1&limit=${props.limit}&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&token=${apiKey}`
       )
       props.setFilteredFilms(result.data.docs);
       } else{
         const result = await api.get(
-          `/movie?field=year&search=${yearFrom}-${yearTo}&field=rating.kp&search=${kpFrom}-${kpTo}&sortType=-1&limit=${props.limit}&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&token=${apiKey}`
+          `/movie?field=year&search=${yearFrom ? yearFrom : '1990'}-${yearTo ? yearTo : '2022'}&field=rating.kp&search=${kpFrom ? kpFrom : 1}-${kpTo ? kpTo : 10}&sortType=-1&limit=${props.limit}&selectFields=genres%20videos.trailers%20year%20name%20description%20ageRating%20id%20poster%20rating%20&token=${apiKey}`
         )
         props.setFilteredFilms(result.data.docs);
       }

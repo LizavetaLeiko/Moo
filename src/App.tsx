@@ -10,7 +10,7 @@ import NotFound from "./pages/notFound/NotFound";
 import UserPage from "./pages/userPage/UserPage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { checkAuth } from "./redux/reduser/userSlice";
+import { changeTheme, checkAuth } from "./redux/reduser/userSlice";
 import { useAppSelector } from "./redux/reduxHook";
 import { Triangle } from "react-loader-spinner";
 import PopUp from "./components/pop-up/PopUp";
@@ -20,6 +20,11 @@ function App() {
 
   useEffect(() => {
     dispatch(checkAuth());
+    if(document.cookie.match(/theme=(.*?)(?:;|$)/)?.[1]){
+      dispatch(changeTheme(document.cookie.match(/theme=(.*?)(?:;|$)/)?.[1]))
+    } else {
+      dispatch(changeTheme('dark'))
+    }
   }, []);
 
   const user = useAppSelector((state) =>state.user);

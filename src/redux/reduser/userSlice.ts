@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { backend } from "../../axios/axios";
 
-document.cookie = 'theme=dark';
-const cookie = document.cookie.match(/theme=(.*?)(?:;|$)/)?.[1];
+
+// document.cookie = 'theme=dark';
+// const cookie = document.cookie.match(/theme=(.*?)(?:;|$)/)?.[1];
 
 interface user {
   id: string,
-  theme: string | undefined,
+  theme: string | undefined, 
   likedFilms: Array<string>,
   login: string,
   isActivated: boolean,
@@ -18,7 +19,7 @@ interface user {
 
 const initialState: user = {
   id: '',
-  theme: cookie,
+  theme: undefined,
   likedFilms: [],
   login: '',
   isActivated: false,
@@ -79,9 +80,9 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    changeTheme: (state, action: PayloadAction<string>) => {
-      state.theme = action.payload;
+    changeTheme: (state, action: PayloadAction<string | undefined>) => {
       document.cookie = `theme=${action.payload}`;
+      state.theme = action.payload;
     },
     setIsLoading: (state, action: PayloadAction<boolean>)=>{
       state.isLoading = action.payload
