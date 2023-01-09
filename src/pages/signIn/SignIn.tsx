@@ -4,13 +4,13 @@ import { NavLink, Params, useNavigate, useParams } from "react-router-dom";
 import { backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
-import { setUserInfo } from "../../redux/reduser/userSlice";
+import { setError, setUserInfo } from "../../redux/reduser/userSlice";
 import { useAppSelector } from "../../redux/reduxHook";
 import styles from "./styles/signIn.module.sass";
 
 function SignIn() {
 
-  const currentTheme = useAppSelector((state) => state.user.theme);
+  const user = useAppSelector((state) => state.user);
 
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -46,12 +46,12 @@ function SignIn() {
       localStorage.setItem('token', responce.data.accessToken);
       goHome();
     } catch (err) {
-      console.log(err);
+      dispatch(setError(true))
     }
   }
 
   return (
-    <div className={styles.container} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
+    <div className={styles.container} style={user.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <div className={styles.signIn} >
         <h1 className={styles.signIn__title}>Войти</h1>
         <form action="SignIn" className={styles.signIn__form}>

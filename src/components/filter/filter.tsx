@@ -4,6 +4,7 @@ import apiKey from "../../apiKey";
 import { api } from '../../axios/axios';
 import { useEffect, useState } from "react";
 import IFilter from './interface/IFilter';
+import { useAppSelector } from '../../redux/reduxHook';
 
 function Filter(props:IFilter) {
 
@@ -12,6 +13,8 @@ function Filter(props:IFilter) {
   const [yearTo, setYearTo] = useState<string>('2022');
   const [kpFrom, setKpFrom] = useState<string>('1');
   const [kpTo, setKpTo] = useState<string>('10');
+
+  const user = useAppSelector((state) => state.user);
 
   const getMovies = async () => {
     try {

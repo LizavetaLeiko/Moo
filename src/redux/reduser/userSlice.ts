@@ -13,7 +13,7 @@ interface user {
   isLoading: boolean,
   isAuth: boolean,
   status: string | null,
-  error: string | null,
+  error: boolean,
 }
 
 const initialState: user = {
@@ -24,7 +24,7 @@ const initialState: user = {
   isActivated: false,
   isAuth: false,
   status: null,
-  error: null,
+  error: false,
   isLoading: false,
 };
 
@@ -92,6 +92,9 @@ export const userSlice = createSlice({
       state.likedFilms = action.payload.likedFilm;
       state.isActivated = action.payload.isActivated;
       state.isAuth = true;
+    },
+    setError: (state, action) =>{
+      state.error = action.payload;
     }
   },
   extraReducers: {
@@ -145,5 +148,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { changeTheme, setIsLoading, setUserInfo} = userSlice.actions;
+export const { changeTheme, setIsLoading, setUserInfo, setError} = userSlice.actions;
 export default userSlice.reducer;

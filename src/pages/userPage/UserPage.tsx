@@ -5,7 +5,7 @@ import apiKey from "../../apiKey";
 import { api, backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import { useAppSelector } from "../../redux/reduxHook";
-import { addUnLiked, setUserInfo } from "../../redux/reduser/userSlice";
+import { addUnLiked, setError, setUserInfo } from "../../redux/reduser/userSlice";
 import { useDispatch } from "react-redux";
 import { IShortFilmObj } from "../../interfaces/filmObj";
 
@@ -38,7 +38,7 @@ function UserPage() {
       );
       setFilms(result.data.docs);
     } catch (err) {
-      console.log(err);
+      dispatch(setError(true))
     }
   }
   };
@@ -70,7 +70,7 @@ function UserPage() {
       dispatch(setUserInfo(defaultUser))
       goHome()
     } catch (err) {
-      console.log(err);
+      dispatch(setError(true))
     }
   }
 

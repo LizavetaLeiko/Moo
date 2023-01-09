@@ -4,14 +4,12 @@ import { NavLink } from "react-router-dom";
 import { backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
-import PopUp from "../../components/pop-up/PopUp";
-import {  setUserInfo } from "../../redux/reduser/userSlice";
+import {  setError, setUserInfo } from "../../redux/reduser/userSlice";
 import { useAppSelector } from "../../redux/reduxHook";
 import styles from "./styles/signUp.module.sass";
 
 function SignUp() {
 
-  const currentTheme = useAppSelector((state) => state.user.theme);
   const user = useAppSelector((state) => state.user);
 
   const [visability, setVisability] = useState<boolean>(false);
@@ -38,7 +36,7 @@ function SignUp() {
       dispatch(setUserInfo(responce.data.user));
       localStorage.setItem('token', responce.data.accessToken);
     } catch (err) {
-      console.log(err);
+      dispatch(setError(true))
     }
   }
 
@@ -87,7 +85,7 @@ function SignUp() {
 
 
   return (
-    <div className={styles.container} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
+    <div className={styles.container} style={user.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
     <div className={styles.signUp}>
       <h1 className={styles.signUp__title}>Зарегестрироваться</h1>
       <form action="SignIn" className={styles.signUp__form}>
@@ -130,10 +128,6 @@ function SignUp() {
         />
       <span className={styles.signUp__question}>Уже есть аккаунт? <NavLink className='link-class-dark' to='/signin'>Войти</NavLink></span>
     </div>
-    { 
-      user.isAuth && !user.isActivated &&
-      <PopUp title='Пожалуйста, подтвердите почту' text='Мы отправили на вашу электронную почту письмо для подтвержения' />
-    }
   </div>
   );
 }

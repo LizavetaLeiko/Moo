@@ -8,7 +8,7 @@ import { ICountries, IGenre} from "../../interfaces/filmObj";
 import SimilarFilmsSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
-import { addLiked } from "../../redux/reduser/userSlice";
+import { addLiked, setError } from "../../redux/reduser/userSlice";
 
 function MoviePage() {
 
@@ -26,7 +26,7 @@ function MoviePage() {
       );
       setFilmInfo(result.data);
     } catch (err) {
-      console.log("error");
+      dispatch(setError(true))
     }
   };
 

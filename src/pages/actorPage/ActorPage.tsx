@@ -3,13 +3,14 @@ import { NavLink, Params, useParams } from "react-router-dom";
 import { api } from "../../axios/axios";
 import apiKey from "../../apiKey";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../redux/reduxHook";
+import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
 import { IActorFullInfo } from "../../interfaces/IActor";
-
+import { setError } from "../../redux/reduser/userSlice";
 
 function ActorPage() {
 
-  const currentTheme = useAppSelector((state) => state.user.theme);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
 
 
   const params = useParams<Params<string>>();
@@ -23,7 +24,7 @@ function ActorPage() {
       setActorInfo(result.data);
       console.log(result)
     } catch (err) {
-      console.log("error");
+      dispatch(setError(true))
     }
   };
 
@@ -34,7 +35,7 @@ function ActorPage() {
   
 
   return (
-    <div className={styles.actorPage} style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
+    <div className={styles.actorPage} style={user.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <div className={styles.actorPage__flex}>
         <div className={styles.actorPage__left}>
           <div className={styles.actorPage__poster}>
@@ -73,7 +74,7 @@ function ActorPage() {
             {actorInfo?.movies?.map((item: any)=>{
               if (item.name && item.rating){
                 return(
-                  <NavLink to={`/movie/${item.id}`} className={currentTheme === 'light' ? 'link-class-black' : 'link-class'}>
+                  <NavLink key={item.id} to={`/movie/${item.id}`} className={user.theme === 'light' ? 'link-class-black' : 'link-class'}>
                     <div className={styles.actorPage__movie}>
                       <span className={styles.actorPage__movie__name}>{item.name}</span>
                       <span className={styles.actorPage__movie__rating}>{item.rating}</span>
@@ -82,7 +83,7 @@ function ActorPage() {
                 )
               } else if(item.name){
                 return(
-                  <NavLink to={`/movie/${item.id}`} className='link-class'>
+                  <NavLink key={item.id} to={`/movie/${item.id}`} className='link-class'>
                     <div className={styles.actorPage__movie}>
                       <span className={styles.actorPage__movie__name}>{item.name}</span>
                     </div>

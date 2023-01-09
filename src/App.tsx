@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { checkAuth } from "./redux/reduser/userSlice";
 import { useAppSelector } from "./redux/reduxHook";
 import { Triangle } from "react-loader-spinner";
+import PopUp from "./components/pop-up/PopUp";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,11 @@ function App() {
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      }
+      {
+        user.error 
+        &&
+        <PopUp title="Произошла ошибка" text="Извините, произошла ошибка запроса"/>
       }
     </div>
   );

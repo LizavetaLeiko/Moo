@@ -10,6 +10,9 @@ import { api } from "../../../axios/axios";
 import apiKey from "../../../apiKey";
 import { useEffect, useState } from "react";
 import { IFilmObj } from '../../../interfaces/filmObj';
+import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
+import { setError } from "../../../redux/reduser/userSlice";
+import PopUp from "../../pop-up/PopUp";
 
 interface ISlider {
   title: string;
@@ -21,6 +24,9 @@ function FilmsSlider(props: ISlider) {
   const [films, setFilms] = useState<Array<IFilmObj>>([]);
   const [limit, setLimit] = useState<number>(10);
 
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
   const getMovies = async () => {
     try {
       const result = await api.get(
@@ -28,7 +34,7 @@ function FilmsSlider(props: ISlider) {
       );
       setFilms(result.data.docs);
     } catch (err) {
-      console.log("error");
+      dispatch(setError(true));
     }
   };
 
@@ -94,6 +100,11 @@ function FilmsSlider(props: ISlider) {
           );
         })}
       </Slider>
+      {
+        user.error 
+        &&
+        <PopUp title="Произошла ошибка" text="Извините, произошла ошибка запроса"/>
+      }
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../axios/axios";
 import apiKey from "../../apiKey";
 import useOutsideClick from "../../castomHooks/clickOutside/useOutsideClick";
-import { changeTheme } from "../../redux/reduser/userSlice";
+import { changeTheme, setError } from "../../redux/reduser/userSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
 import { IShortFilmObj } from "../../interfaces/filmObj";
 
@@ -47,7 +47,7 @@ function Header() {
         );
         setSearchedList(result.data.docs);
       } catch (err) {
-        console.log("error");
+        dispatch(setError(true));
       }
     };
     handleSearchedList();

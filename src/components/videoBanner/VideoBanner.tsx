@@ -5,11 +5,15 @@ import apiKey from "../../apiKey";
 import { useEffect, useRef, useState } from "react";
 import { IFilmObj, IGenre } from '../../interfaces/filmObj'
 import { NavLink } from "react-router-dom";
+import { setError } from "../../redux/reduser/userSlice";
+import { useAppDispatch } from "../../redux/reduxHook";
 
 function VideoBanner() {
   const [films, setFilms] = useState<Array<IFilmObj>>([]);
   const [filmNum, setFilmNum] = useState<number>(0);
   const filmRef = useRef<number>(0)
+
+  const dispatch = useAppDispatch();
 
   const getFilmInfo = async () => {
     try {
@@ -18,7 +22,7 @@ function VideoBanner() {
       );
       setFilms(result.data.docs.slice(1, 3));
     } catch (err) {
-      console.log("error");
+      dispatch(setError(true))
     }
   };
 
