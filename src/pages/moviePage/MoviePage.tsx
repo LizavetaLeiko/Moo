@@ -10,6 +10,7 @@ import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
 import { addLiked, setError } from "../../redux/reduser/userSlice";
 import defaultPoster from '../../assets/imgs/defaultPoster.png';
+import PopUp from "../../components/pop-up/PopUp";
 
 
 function MoviePage() {
@@ -19,7 +20,7 @@ function MoviePage() {
 
   const params = useParams<Params<string>>();
   const [filmInfo, setFilmInfo] = useState<any>();
-
+  const [err, setErr] = useState<boolean>(false);
 
   const getFilmInfo = async () => {
     try {
@@ -34,10 +35,15 @@ function MoviePage() {
 
   useEffect(()=>{
     getFilmInfo()
-  },[params.id]);
+  },[]);
 
   const dispatchNewFilm=()=>{
-    dispatch(addLiked({id: user.id, filmId: params.id}));
+    if(!user.isAuth){
+      setErr(true)
+    }
+    else{
+      dispatch(addLiked({id: user.id, filmId: params.id}));
+    }
   }
 
   return (
@@ -101,6 +107,11 @@ function MoviePage() {
           }
           {filmInfo?.similarMovies && filmInfo?.similarMovies.length > 0 &&
             <SimilarFilmsSlider movies={filmInfo?.similarMovies} title='Похожие фильмы'/>
+          }
+          {
+          err 
+          &&
+          <PopUp title="Пожалуйста, авторизуйтесь" text="Добавить фильм может только авторизованный пользователь" onChangeBoolState={setErr}/>
           }
     </div>
   );

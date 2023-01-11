@@ -13,13 +13,11 @@ import { useDispatch } from "react-redux";
 import { changeTheme, checkAuth } from "./redux/reduser/userSlice";
 import { useAppSelector } from "./redux/reduxHook";
 import { Triangle } from "react-loader-spinner";
-import PopUp from "./components/pop-up/PopUp";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkAuth());
     if(document.cookie.match(/theme=(.*?)(?:;|$)/)?.[1]){
       dispatch(changeTheme(document.cookie.match(/theme=(.*?)(?:;|$)/)?.[1]))
     } else {
@@ -27,10 +25,14 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [])
+
   const user = useAppSelector((state) =>state.user);
 
   return (
-    <div className="App">
+    <div className="App" style={user.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <Header />
       {user.isLoading ?
       <div className="loader__wrap">
@@ -52,11 +54,6 @@ function App() {
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      }
-      {
-        user.error 
-        &&
-        <PopUp title="Произошла ошибка" text="Извините, произошла ошибка запроса"/>
       }
     </div>
   );

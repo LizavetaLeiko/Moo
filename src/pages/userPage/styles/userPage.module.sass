@@ -3,7 +3,8 @@
   
 .userpage
   &__container
-    padding: 150px 50px 100px
+    height: 100%
+    padding: 150px 50px 
     @media (max-width: 1000px)
       padding: 130px 30px 90px
     @media (max-width: 600px)
@@ -78,3 +79,11 @@
         @media (max-width: 900px)
           font-size: 12px
           padding: 2px 5px
+.p
+  @include f18_500
+  font-weight: 600
+  margin-left: 5px
+  @media (max-width: 600px )
+    font-weight: 600
+    font-size: 16px
+    line-height: 18px

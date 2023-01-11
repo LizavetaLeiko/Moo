@@ -6,16 +6,17 @@ import { useState } from "react";
 import FilteredFilmsList from "../../components/filteredFilmsList/FilteredFilmsList";
 import { IFilmObj } from "../../interfaces/filmObj";
 import { useAppSelector } from "../../redux/reduxHook";
+import PopUp from "../../components/pop-up/PopUp";
 
 function HomePage() {
   const [filtered, setFiltered] = useState<boolean>(false);
   const [filteredFilms, setFilteredFilms] = useState<Array<IFilmObj>>([]);
   const [limit, setLimit] = useState<number>(10);
 
-  const currentTheme = useAppSelector((state) => state.user.theme);
+  const user = useAppSelector((state) => state.user);
   
   return (
-    <div style={currentTheme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
+    <div style={user.theme === 'light' ? {backgroundColor: '#fff', color: '#000'} : {backgroundColor: '#000', color: '#fff'}}>
       <div>
         <VideoBanner />
         <div className={styles.content}>
@@ -42,6 +43,11 @@ function HomePage() {
           }
         </div>
       </div>
+      {
+        user.error 
+        &&
+        <PopUp title="Произошла ошибка" text="Извините, произошла ошибка запроса"/>
+      }
     </div>
   );
 }

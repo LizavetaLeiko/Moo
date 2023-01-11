@@ -8,6 +8,9 @@ import { useAppSelector } from "../../redux/reduxHook";
 import { addUnLiked, setError, setUserInfo } from "../../redux/reduser/userSlice";
 import { useDispatch } from "react-redux";
 import { IShortFilmObj } from "../../interfaces/filmObj";
+import PopUp from "../../components/pop-up/PopUp";
+import defaultPoster from '../../assets/imgs/defaultPoster.png';
+
 
 function UserPage() {
   const navigate = useNavigate();
@@ -36,7 +39,8 @@ function UserPage() {
             user.likedFilms.length
         }&selectFields=%20name%20id%20poster%20rating%20year&token=${apiKey}`
       );
-      setFilms(result.data.docs);
+      console.log(result.data.docs ? result.data.docs : [...films, result.data])
+      setFilms(result.data.docs ? result.data.docs : [...films, result.data]);
     } catch (err) {
       dispatch(setError(true))
     }
@@ -49,7 +53,6 @@ function UserPage() {
 
   const removeMovie = (id: string) =>{
     dispatch(addUnLiked({id: user.id, filmId: id}))
-    console.log('userpage:', {id: user.id, filmId: id})
   }
 
   const defaultUser ={
@@ -95,7 +98,7 @@ function UserPage() {
                   <NavLink to={`/movie/${item?.id}`} className={user?.theme === 'light' ? 'link-class-black' : 'link-class'}>
                   <div className={styles.userpage__film__info}>
                     <div className={styles.userpage__film__img}>
-                      <img src={item?.poster.url} alt={item?.name} />
+                      <img src={item?.poster?.url ? item.poster.url : defaultPoster} alt={item?.name} />
                     </div>
                     <div className={styles.userpage__film__text}>
                       <h1>{item?.name}</h1>
@@ -110,9 +113,14 @@ function UserPage() {
           }
         </div>
         :
-        <p>Нет отложенных фильмов</p>
+        <p className={styles.p}>Нет отложенных фильмов</p>
         }
       </div>
+      {
+        user.error 
+        &&
+        <PopUp title="Произошла ошибка" text="Извините, произошла ошибка запроса"/>
+      }
     </div>
   );
 }

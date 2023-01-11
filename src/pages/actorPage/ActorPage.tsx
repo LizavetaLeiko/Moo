@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
 import { IActorFullInfo } from "../../interfaces/IActor";
 import { setError } from "../../redux/reduser/userSlice";
+import PopUp from "../../components/pop-up/PopUp";
 
 function ActorPage() {
 
@@ -97,6 +98,11 @@ function ActorPage() {
         </div>
         </div>
       </div>
+      {
+        user.error 
+        &&
+        <PopUp title="Произошла ошибка" text="Извините, произошла ошибка запроса"/>
+      }
     </div>
   );
 }

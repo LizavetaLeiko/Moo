@@ -4,6 +4,7 @@ import { NavLink, Params, useNavigate, useParams } from "react-router-dom";
 import { backend } from "../../axios/axios";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import Input from "../../components/common/inputs/Input";
+import PopUp from "../../components/pop-up/PopUp";
 import { setError, setUserInfo } from "../../redux/reduser/userSlice";
 import { useAppSelector } from "../../redux/reduxHook";
 import styles from "./styles/signIn.module.sass";
@@ -81,6 +82,11 @@ function SignIn() {
         />
         <span className={styles.signIn__question}>Нет аккаунта? <NavLink className='link-class-dark' to='/signup'>Зарегестрироваться</NavLink></span>
       </div>
+      {
+        user.error 
+        &&
+        <PopUp title="Произошла ошибка" text="Извините, произошла ошибка запроса"/>
+      }
     </div>
   );
 }

@@ -67,10 +67,8 @@ export const addUnLiked: any = createAsyncThunk(
         "/api/unliked",
         {id: payload.id, filmId: payload.filmId}
       );
-      console.log('slice responce:', responce.data)
       return responce.data;
     } catch (error: any) {
-      console.log('slice err:', error)
       return error;
     }
   }
@@ -116,7 +114,6 @@ export const userSlice = createSlice({
       state.status = "rejected";
       state.isLoading = false;
       state.isAuth = false;
-      state.error = action.payload;
     },
     [addLiked.pending]: (state, action) => {
       state.status = "loading";

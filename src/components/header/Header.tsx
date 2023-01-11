@@ -133,7 +133,7 @@ function Header() {
               <div className={styles.header__user__img}>
                 <img src={userImg} alt={user.login} />
               </div>
-              <span className={styles.header__user__name}>{user.login}</span>
+              <span className={styles.header__user__name}>{user.login.split('@')[0]}</span>
             </div>
             </NavLink>
             :
