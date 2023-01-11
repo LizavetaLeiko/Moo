@@ -38,7 +38,7 @@ function MoviePage() {
   },[]);
 
   const dispatchNewFilm=()=>{
-    if(!user.isAuth){
+    if(!user.isAuth || !user.isActivated){
       setErr(true)
     }
     else{
