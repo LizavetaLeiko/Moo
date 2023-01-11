@@ -43,6 +43,7 @@ function MoviePage() {
     }
     else{
       dispatch(addLiked({id: user.id, filmId: params.id}));
+      setErr(false)
     }
   }
 
