@@ -1,9 +1,0 @@
-.slider{
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-.slick-list{
-  width: 90% !important;
-}

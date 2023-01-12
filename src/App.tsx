@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { changeTheme, checkAuth } from "./redux/reduser/userSlice";
 import { useAppSelector } from "./redux/reduxHook";
 import { Triangle } from "react-loader-spinner";
+import RequireAuth from "./castomHooks/requireAuth/RequireAuth";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function App() {
         <Route path="/actor/:id" element={<ActorPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/user/:id" element={<UserPage />} />
+        <Route path="/user/:id" element={<RequireAuth><UserPage /></RequireAuth>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
       }

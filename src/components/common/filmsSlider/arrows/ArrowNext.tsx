@@ -4,13 +4,8 @@ import prev from '../../../../assets/icons/next.svg'
 
 function ArrowNext(props: any) {
 
-  const onNextClick = ()=>{
-    props.onClick();
-    props.setLimit(() => props.limit + 5);
-  }
-
   return (
-    <button className={styles.next} onClick={onNextClick}>
+    <button className={styles.next} onClick={props.onClick}>
       <img src={prev} alt="previous slides" />
     </button>
   );

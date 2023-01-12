@@ -5,12 +5,12 @@ import apiKey from "../../apiKey";
 import { useEffect,  useState } from "react";
 import DefaultBtn from "../../components/common/defualtBtn/DefaultBtn";
 import { ICountries, IGenre} from "../../interfaces/filmObj";
-import SimilarFilmsSlider from "../../components/common/similarFilmsSlider/SimilarFilmsSlider";
 import ActorsSlider from "../../components/common/actorsSlider/ActorsSlider";
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
 import { addLiked, setError } from "../../redux/reduser/userSlice";
 import defaultPoster from '../../assets/imgs/defaultPoster.png';
 import PopUp from "../../components/pop-up/PopUp";
+import FilmsSlider from "../../components/common/filmsSlider/FilmsSlider";
 
 
 function MoviePage() {
@@ -107,7 +107,7 @@ function MoviePage() {
             <ActorsSlider persons={filmInfo?.persons} title='Актеры'/>
           }
           {filmInfo?.similarMovies && filmInfo?.similarMovies.length > 0 &&
-            <SimilarFilmsSlider movies={filmInfo?.similarMovies} title='Похожие фильмы'/>
+            <FilmsSlider movies={filmInfo?.similarMovies} title='Похожие фильмы'/>
           }
           {
           err 
