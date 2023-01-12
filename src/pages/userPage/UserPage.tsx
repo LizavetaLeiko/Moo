@@ -86,7 +86,7 @@ function UserPage() {
           : { backgroundColor: "#000", color: "#fff" }
       }
     >
-      <div className={styles.userpage__container}>
+      <div className={styles.userpage__container} style={films.length > 1 ? {height: '100%'} : {height: '100vh'}}>
         <DefaultBtn title="Выйти из аккаунта" maxWidth='300px' marginBottom='50px' onClick={postLogout}/>
         {films.length > 0 
         ?
