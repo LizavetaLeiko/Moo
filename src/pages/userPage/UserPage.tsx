@@ -26,7 +26,7 @@ function UserPage() {
   const user = useAppSelector((state) =>state.user);
   const dispatch = useDispatch();
 
-  const getFilmIs = async () => {
+  const getFilms = async () => {
     if(user.likedFilms.length > 0){ 
     try {
       const result = await api.get(
@@ -39,7 +39,6 @@ function UserPage() {
             user.likedFilms.length
         }&selectFields=%20name%20id%20poster%20rating%20year&token=${apiKey}`
       );
-      console.log(result.data.docs ? result.data.docs : [...films, result.data])
       setFilms(result.data.docs ? result.data.docs : [...films, result.data]);
     } catch (err) {
       dispatch(setError(true))
@@ -48,9 +47,9 @@ function UserPage() {
   };
 
   useEffect(() => {
-    getFilmIs();
+    getFilms();
     window.scrollTo(0,0)
-  }, []);
+  },[]);
 
   const removeMovie = (id: string) =>{
     dispatch(addUnLiked({id: user.id, filmId: id}))

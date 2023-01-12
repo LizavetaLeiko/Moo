@@ -1,12 +1,20 @@
-import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/reduxHook";
 
 const RequireAuth = ({ children }: any) => {
+  const navigate = useNavigate();
 
-  const user = useAppSelector((state)=> state.user)
+  const [isAuth, setIsAuth] = useState<boolean>();
 
-  if ( !user.isAuth ) {
-    return <Navigate to="/signin"/>
+  const user = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    setIsAuth(user.isAuth);
+  }, []);
+
+  if (!isAuth) {
+    return navigate("/signin");
   }
 
   return children;

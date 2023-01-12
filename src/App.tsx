@@ -52,7 +52,7 @@ function App() {
         <Route path="/actor/:id" element={<ActorPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/user/:id" element={<RequireAuth><UserPage /></RequireAuth>}/>
+        <Route path="/user/:id" element={<RequireAuth><UserPage/></RequireAuth>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
       }
