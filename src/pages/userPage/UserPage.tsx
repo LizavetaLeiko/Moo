@@ -49,6 +49,7 @@ function UserPage() {
 
   useEffect(() => {
     getFilmIs();
+    window.scrollTo(0,0)
   }, []);
 
   const removeMovie = (id: string) =>{

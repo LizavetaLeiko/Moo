@@ -35,7 +35,8 @@ function MoviePage() {
 
   useEffect(()=>{
     getFilmInfo()
-  },[]);
+    window.scrollTo(0,0)
+  },[params.id]);
 
   const dispatchNewFilm=()=>{
     if(!user.isAuth || !user.isActivated){

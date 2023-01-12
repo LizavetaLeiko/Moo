@@ -31,6 +31,7 @@ function ActorPage() {
 
   useEffect(()=>{
     getInfo()
+    window.scrollTo(0,0)
   },[params.id]); 
 
   

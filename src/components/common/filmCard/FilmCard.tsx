@@ -45,4 +45,5 @@ function FilmCard(props: filmCard) {
   );
 }
 
+
 export default FilmCard;
