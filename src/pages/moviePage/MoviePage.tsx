@@ -20,7 +20,7 @@ function MoviePage() {
 
   const params = useParams<Params<string>>();
   const [filmInfo, setFilmInfo] = useState<any>();
-  const [err, setErr] = useState<boolean>(false);
+  const [err, setErr] = useState<string>('ok');
 
   const getFilmInfo = async () => {
     try {
@@ -39,12 +39,14 @@ function MoviePage() {
   },[params.id]);
 
   const dispatchNewFilm=()=>{
-    if(!user.isAuth || !user.isActivated){
-      setErr(true)
+    if(!user.isAuth){
+      setErr('unAuth')
+    } else if (!user.isActivated) {
+      setErr('unActive')
     }
     else{
       dispatch(addLiked({id: user.id, filmId: params.id}));
-      setErr(false)
+      setErr('ok')
     }
   }
 
@@ -111,9 +113,14 @@ function MoviePage() {
             <FilmsSlider movies={filmInfo?.similarMovies} title='Похожие фильмы'/>
           }
           {
-          err 
+          err === 'unAuth'
           &&
           <PopUp title="Пожалуйста, авторизуйтесь" text="Добавить фильм может только авторизованный пользователь" onChangeBoolState={setErr}/>
+          }
+          {
+          err === 'unActive'
+          &&
+          <PopUp title="Пожалуйста, подтвердите почту" text="При регистрации вам на эл. почту было отправлено письмо активации аккаунта" onChangeBoolState={setErr}/>
           }
     </div>
   );
